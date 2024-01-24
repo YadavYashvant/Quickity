@@ -1,5 +1,6 @@
 package com.yashvant.org.apps.qrscanner.ui.screen.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.navigation.NavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.qrscanner.ui.navhost.NavigationItem
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController) {
     Column(
