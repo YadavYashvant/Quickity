@@ -57,10 +57,7 @@ fun RequestPermission() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                // Permission Accepted: Do something
                 Log.d("TAG", "PERMISSION GRANTED")
-//                startService(intent)
-//                bindService(intent, connection, Context.BIND_AUTO_CREATE)
             }
         }
 
