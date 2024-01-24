@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.yashvant.org.apps.qrscanner.R
+import com.yashvant.org.apps.qrscanner.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.qrscanner.ui.navhost.NavigationItem
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -29,6 +30,9 @@ fun HomeScreen(navController: NavController) {
         Scaffold(
             topBar = {
                 Text(stringResource(R.string.app_name))
+            },
+            bottomBar = {
+                BottomNavigation(navController = navController)
             }
         ) {
             Button(onClick = {
