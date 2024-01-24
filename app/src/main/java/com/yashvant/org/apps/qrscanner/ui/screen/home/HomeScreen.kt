@@ -23,7 +23,12 @@ fun HomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = {
+
+    }
+}
+
+/*
+Button(onClick = {
             navController.navigate(NavigationItem.Scan.route)
         }) {
             Text(stringResource(R.string.scan_code))
@@ -34,5 +39,4 @@ fun HomeScreen(navController: NavController) {
         }) {
             Text(stringResource(R.string.generate_qr_code))
         }
-    }
-}
+ */
