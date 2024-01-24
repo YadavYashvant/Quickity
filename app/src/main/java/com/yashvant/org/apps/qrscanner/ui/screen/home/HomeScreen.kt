@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +24,24 @@ fun HomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Scaffold(
+            topBar = {
+                Text(stringResource(R.string.app_name))
+            }
+        ) {
+            Button(onClick = {
+                navController.navigate(NavigationItem.Scan.route)
+            }) {
+                Text(stringResource(R.string.scan_code))
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = {
+                navController.navigate(NavigationItem.Generate.route)
+            }) {
+                Text(stringResource(R.string.generate_qr_code))
+            }
 
+        }
     }
 }
 
