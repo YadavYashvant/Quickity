@@ -95,7 +95,7 @@ fun BottomNavigation(
                 colors = androidx.compose.material3.NavigationBarItemDefaults
                     .colors(
                         selectedIconColor = redV,
-                        indicatorColor = blueV
+                        //indicatorColor = Color.Transparent,
                     ),
                 label = {
                     Text(text = item.title, color = redV)

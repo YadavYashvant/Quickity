@@ -15,6 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.qrscanner.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.qrscanner.ui.navhost.NavigationItem
@@ -27,26 +30,25 @@ fun HomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        val navbarController = rememberNavController()
+
         Scaffold(
-            topBar = {
-                Text(stringResource(R.string.app_name))
-            },
             bottomBar = {
-                BottomNavigation(navController = navController)
+                BottomNavigation(navController = navbarController)
             }
         ) {
-            Button(onClick = {
-                navController.navigate(NavigationItem.Scan.route)
-            }) {
-                Text(stringResource(R.string.scan_code))
+            NavHost(navController = navbarController, startDestination = "home"){
+                composable("Home"){
+                    Text("This is home page")
+                }
+                composable("Scan"){
+                    Text("This is scan page")
+                }
+                composable("Bills"){
+                    Text("This is bills page")
+                }
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = {
-                navController.navigate(NavigationItem.Generate.route)
-            }) {
-                Text(stringResource(R.string.generate_qr_code))
-            }
-
         }
     }
 }
