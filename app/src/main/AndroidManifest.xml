@@ -4,6 +4,7 @@
     package="com.yashvant.org.apps.qrscanner">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-feature android:name="com.android.hardware.Camera.focus" />
     <uses-feature

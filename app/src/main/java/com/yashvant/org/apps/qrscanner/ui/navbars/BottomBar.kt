@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.yashvant.org.apps.qrscanner.ui.theme.whiteV
 
 
 data class BottomNavigationItem(
@@ -82,7 +83,7 @@ fun BottomNavigation(
     }
 
     NavigationBar(
-        containerColor = Color.Transparent
+        containerColor = whiteV
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(

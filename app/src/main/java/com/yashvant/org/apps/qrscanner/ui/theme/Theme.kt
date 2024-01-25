@@ -41,7 +41,7 @@ private val LightColorScheme = lightColorScheme(
 val blackV = Color(0XFF0F1923)
 val redV = Color(0xFFF54452)
 val blueV = Color(0XFF1F2731)
-
+val whiteV = Color(0XFFFFFFFF)
 @Composable
 fun QRScannerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
