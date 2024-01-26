@@ -2,6 +2,7 @@ package com.yashvant.org.apps.qrscanner.ui.screen.home
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -56,6 +59,7 @@ fun HomeScreen(navController: NavController) {
                     LazyColumn(
                         modifier = Modifier
                             .padding(vertical = 8.dp, horizontal = 16.dp)
+                            .padding(bottom = 75.dp)
                             .fillMaxSize()
                     ) {
                         item {
@@ -109,6 +113,7 @@ fun HomeScreen(navController: NavController) {
                             }
                         }
                         items(10){
+                            val image = pickrandomImage()
                                 Card(
                                     onClick = { /*TODO*/ },
                                     modifier = Modifier
@@ -116,11 +121,19 @@ fun HomeScreen(navController: NavController) {
                                         .fillMaxWidth()
                                         .height(200.dp)
                                 ) {
-                                    Text("Item $it", modifier = Modifier.padding(16.dp))
+                                    Image(
+                                        painter = painterResource(id = image),
+                                         contentDescription = null,
+                                        modifier = Modifier
+                                            .fillMaxSize(),
+                                        contentScale = androidx.compose.ui.layout.ContentScale.FillBounds
+                                    )
                                 }
                             }
                         }
                     }
+
+
                 composable("Scan") {
                     Column(
                         modifier = Modifier
@@ -155,11 +168,26 @@ fun HomeScreen(navController: NavController) {
                         }
                     }
                 }
+
+
                 composable("Bills"){
                     Text("This is bills page")
                 }
             }
         }
+}
+
+val imagelist = listOf(
+    R.drawable.lakeside_sunset,
+    R.drawable.lowpoly_street,
+    R.drawable.lucy_rebecca,
+    R.drawable.messi,
+    R.drawable.moments_before_desk,
+    R.drawable.night_city,
+)
+
+fun pickrandomImage(): Int {
+    return imagelist.random()
 }
 
 /*
