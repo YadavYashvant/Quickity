@@ -121,8 +121,39 @@ fun HomeScreen(navController: NavController) {
                             }
                         }
                     }
-                composable("Scan"){
-                    Text("This is scan page")
+                composable("Scan") {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 16.dp, bottom = 56.dp),
+                    ) {
+                        Button(
+                            onClick = {
+                                navController.navigate(NavigationItem.Scan.route)
+                            },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(vertical = 16.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = redV
+                            )
+                        ) {
+                            Text(stringResource(R.string.scan_code))
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(onClick = {
+                            navController.navigate(NavigationItem.Generate.route)
+                        },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(vertical = 16.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = redV
+                            )
+                        ) {
+                            Text(stringResource(R.string.generate_qr_code))
+                        }
+                    }
                 }
                 composable("Bills"){
                     Text("This is bills page")
