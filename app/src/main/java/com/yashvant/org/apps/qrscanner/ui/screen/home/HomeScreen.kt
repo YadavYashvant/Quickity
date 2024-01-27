@@ -189,17 +189,3 @@ val imagelist = listOf(
 fun pickrandomImage(): Int {
     return imagelist.random()
 }
-
-/*
-Button(onClick = {
-            navController.navigate(NavigationItem.Scan.route)
-        }) {
-            Text(stringResource(R.string.scan_code))
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = {
-            navController.navigate(NavigationItem.Generate.route)
-        }) {
-            Text(stringResource(R.string.generate_qr_code))
-        }
- */
