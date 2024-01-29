@@ -28,9 +28,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yashvant.org.apps.quickity.R
+import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.Post
+import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
+import com.yashvant.org.apps.quickity.bill_feature.ui.BillScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.redV
@@ -41,7 +43,7 @@ import retrofit2.Response
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, viewModel: ScannedItemViewModel) {
         val navbarController = rememberNavController()
 
         Scaffold(
@@ -166,7 +168,7 @@ fun HomeScreen(navController: NavController) {
 
 
                 composable("Bills"){
-                    Text("This is bills page")
+                    BillScreen(viewModel = viewModel)
                 }
             }
         }

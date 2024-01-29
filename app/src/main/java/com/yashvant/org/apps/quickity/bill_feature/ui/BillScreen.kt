@@ -2,12 +2,15 @@ package com.yashvant.org.apps.quickity.bill_feature.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,20 +22,58 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.room.Room
-import com.yashvant.org.apps.quickity.bill_feature.entity.AppDatabase
 import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItem
+import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.withContext
 
 
 @Composable
+fun BillScreen(viewModel: ScannedItemViewModel) {
+    val items by viewModel.allItems.collectAsState(emptyList())
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // UI components to display scanned items
+        items.forEach { item ->
+            Text(text = "Item Name: ${item.itemName}")
+            Text(text = "Description: ${item.itemDescription}")
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        // Button to add a new item
+        Button(onClick = {
+            val newItem = ScannedItem(
+                itemName = "New Item",
+                itemDescription = "Description for the new item"
+            )
+            viewModel.insertItem(newItem)
+        }) {
+            Text("Add New Item")
+        }
+    }
+}
+
+
+/*
+@Composable
 fun BillScreen() {
     val context = LocalContext.current
-    val database = Room.databaseBuilder(
+    */
+/*val database = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "app-database"
-    ).build()
+    ).build()*//*
+
+
+    val database = InventoryDatabase.getDatabase(context)
+    val viewModel = ScannedItemViewModel(InventoryRepository(database.itemDao()))
+    val coroutineScope = rememberCoroutineScope()
 
     // Use ZXing or another library to capture scanned data
 
@@ -42,7 +83,7 @@ fun BillScreen() {
     // Insert the scanned item into the Room database
     LaunchedEffect(key1 = scannedItem) {
         withContext(Dispatchers.IO) {
-            database.scannedItemDao().insertItem(scannedItem)
+            viewModel.insertItem(scannedItem)
         }
     }
 
@@ -56,8 +97,7 @@ fun BillScreen() {
     LaunchedEffect(key1 = Unit) {
         withContext(Dispatchers.IO) {
             // Fetch scanned items
-            scannedItems = database.scannedItemDao().getAllItems()
-
+            scannedItems = viewModel.getAllItems()
             // Calculate total amount
             totalAmount = calculateTotalAmount(scannedItems)
         }
@@ -87,11 +127,7 @@ fun BillScreen() {
         },
             ) {
             Text("Add New Item")
-            LaunchedEffect(key1 = newItem) {
-                withContext(Dispatchers.IO) {
-                    database.scannedItemDao().insertItem(newItem)
-                }
-            }
+
         }
     }
 }
@@ -105,4 +141,4 @@ fun CardItem(item: ScannedItem) {
 // Utility function to calculate total amount
 suspend fun calculateTotalAmount(scannedItems: List<ScannedItem>): Double {
     return scannedItems.sumByDouble { it.itemPrice }
-}
+}*/

@@ -8,6 +8,7 @@ import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,10 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
+import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
 import com.yashvant.org.apps.quickity.ui.navhost.AppNavHost
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
 
+
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: ScannedItemViewModel by viewModels()
 
 //    companion object {
 //        @SuppressLint("StaticFieldLeak")
@@ -40,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    ScanScreen()
-                    AppNavHost(navController = rememberNavController())
+                    AppNavHost(navController = rememberNavController(), viewModel = viewModel)
                     // TabLayoutScreen()
                 }
             }
