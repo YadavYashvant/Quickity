@@ -15,7 +15,6 @@ data class ScannedItem(
     val itemPrice: Double
 )
 
-// ScannedItemDao.kt
 @Dao
 interface ScannedItemDao {
     @Insert
@@ -25,9 +24,7 @@ interface ScannedItemDao {
     suspend fun getAllItems(): List<ScannedItem>
 }
 
-// AppDatabase.kt
 @Database(entities = [ScannedItem::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun scannedItemDao(): ScannedItemDao
 }
-
