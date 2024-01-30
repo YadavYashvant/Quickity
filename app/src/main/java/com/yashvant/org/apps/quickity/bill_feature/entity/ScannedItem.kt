@@ -89,6 +89,12 @@ class ScannedItemViewModel(private val repository: ScannedItemRepository) : View
         }
     }
 
+    fun getAllItems(): Flow<List<ScannedItem>> {
+        viewModelScope.launch {
+            repository.getAllItems()
+        }
+    }
+
     // Additional methods...
 }
 
