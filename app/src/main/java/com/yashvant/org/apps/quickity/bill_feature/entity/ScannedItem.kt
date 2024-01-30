@@ -71,6 +71,12 @@ class ScannedItemRepository(private val scannedItemDao: ScannedItemDao) {
     }
 
     // Additional methods...
+
+    suspend fun getAllItems(): Flow<List<ScannedItem>> {
+        return scannedItemDao.getAllItems()
+    }
+
+
 }
 
 class ScannedItemViewModel(private val repository: ScannedItemRepository) : ViewModel() {
