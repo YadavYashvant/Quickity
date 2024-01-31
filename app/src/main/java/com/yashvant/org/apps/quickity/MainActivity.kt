@@ -18,14 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
-import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
+//import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
 import com.yashvant.org.apps.quickity.ui.navhost.AppNavHost
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
 
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: ScannedItemViewModel by viewModels()
+    //private val viewModel: ScannedItemViewModel by viewModels()
 
 //    companion object {
 //        @SuppressLint("StaticFieldLeak")
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    ScanScreen()
-                    AppNavHost(navController = rememberNavController(), viewModel = viewModel)
+                    AppNavHost(navController = rememberNavController(),/* viewModel = viewModel*/)
                     // TabLayoutScreen()
                 }
             }

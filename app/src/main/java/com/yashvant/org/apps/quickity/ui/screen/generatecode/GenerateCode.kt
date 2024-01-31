@@ -36,7 +36,7 @@ import androidx.navigation.NavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
-import com.yashvant.org.apps.quickity.R
+import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.saveImage
 import com.yashvant.org.apps.quickity.shareImageUri
 import kotlinx.coroutines.Dispatchers

@@ -7,7 +7,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
 import com.yashvant.org.apps.quickity.ui.screen.imagepicker.ImagePicker
 import com.yashvant.org.apps.quickity.ui.screen.result.ResultScreen
 import com.yashvant.org.apps.quickity.ui.screen.generatecode.GenerateCodeScreen
@@ -19,7 +18,7 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     startDestination: String = NavigationItem.Home.route,
-    viewModel: ScannedItemViewModel,
+    //viewModel: ScannedItemViewModel,
 ) {
     NavHost(
         modifier = modifier,
@@ -27,7 +26,7 @@ fun AppNavHost(
         startDestination = startDestination
     ) {
         composable(NavigationItem.Home.route) {
-            HomeScreen(navController = navController, viewModel = viewModel)
+            HomeScreen(navController = navController, /*viewModel = viewModel*/)
         }
         composable(
             "${NavigationItem.Result.route}/{result}",

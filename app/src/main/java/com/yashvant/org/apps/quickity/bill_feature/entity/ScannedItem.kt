@@ -1,5 +1,6 @@
-package com.yashvant.org.apps.quickity.bill_feature.entity
 
+package com.yashvant.org.apps.quickity.bill_feature.entity
+/*
 import android.content.Context
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.LiveData
@@ -98,3 +99,4 @@ class ScannedItemViewModel(private val repository: ScannedItemRepository) : View
     // Additional methods...
 }
 
+*/

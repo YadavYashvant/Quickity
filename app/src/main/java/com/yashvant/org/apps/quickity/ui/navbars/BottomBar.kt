@@ -1,6 +1,5 @@
 package com.yashvant.org.apps.quickity.ui.navbars
 
-import com.yashvant.org.apps.quickity.R
 import com.yashvant.org.apps.quickity.ui.theme.redV
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,6 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.ui.theme.whiteV
 
 

@@ -33,8 +33,8 @@ import com.google.zxing.client.android.BeepManager
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.camera.CameraSettings
-import com.yashvant.org.apps.quickity.R
-import com.yashvant.org.apps.quickity.databinding.BarcodeLayoutBinding
+import com.yashvant.org.apps.qrscanner.R
+import com.yashvant.org.apps.qrscanner.databinding.BarcodeLayoutBinding
 import com.yashvant.org.apps.quickity.findActivity
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme

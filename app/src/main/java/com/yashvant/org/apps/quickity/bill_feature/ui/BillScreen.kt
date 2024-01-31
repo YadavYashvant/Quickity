@@ -1,5 +1,6 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
+/*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -58,6 +59,7 @@ fun BillScreen(viewModel: ScannedItemViewModel) {
         }
     }
 }
+*/
 
 
 /*

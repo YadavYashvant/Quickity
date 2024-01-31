@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
-import com.yashvant.org.apps.quickity.R
+import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.copyTextToClipboard
 
 @OptIn(ExperimentalMaterial3Api::class)
