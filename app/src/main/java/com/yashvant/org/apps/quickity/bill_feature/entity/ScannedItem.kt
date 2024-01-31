@@ -1,5 +1,62 @@
 
 package com.yashvant.org.apps.quickity.bill_feature.entity
+
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+@Entity(tableName = "items")
+data class Item(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val name: String,
+    val price: Int)
+
+@Entity(tableName = "bills")
+data class Bill(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val items: List<Item>,
+    val totalAmount: Int)
+
+@Database(entities = [Item::class, Bill::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun itemDao(): ItemDao
+    abstract fun billDao(): BillDao
+}
+
+@Dao
+interface ItemDao {
+    @Query("SELECT * FROM items")
+    fun getAllItems(): LiveData<List<Item>>
+}
+
+@Dao
+interface BillDao {
+    @Query("SELECT * FROM bills")
+    fun getAllBills(): LiveData<List<Bill>>
+}
+
+object DatabaseClient {
+    private val lock = Any()
+    private var db: AppDatabase? = null
+
+    fun getInstance(context: Context): AppDatabase {
+        synchronized(lock) {
+            if (db == null) {
+                db = Room.databaseBuilder(context.applicationContext,
+                    AppDatabase::class.java, "room_database")
+                    .build()
+            }
+            return db!!
+        }
+    }
+}
+
 /*
 import android.content.Context
 import androidx.compose.runtime.collectAsState

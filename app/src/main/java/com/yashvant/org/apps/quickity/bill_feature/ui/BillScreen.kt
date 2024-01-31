@@ -1,5 +1,33 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.runtime.Composable
+import com.yashvant.org.apps.quickity.bill_feature.entity.DatabaseClient
+import com.yashvant.org.apps.quickity.bill_feature.entity.Item
+import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+
+@Composable
+fun BillScreen() {
+    FloatingActionButton(onClick = {
+        // Add items to the database
+        val item1 = Item(name = "Item 1", price = 10)
+        val item2 = Item(name = "Item 2", price = 20)
+        DatabaseClient.getInstance(context).itemDao().insert(item1)
+        DatabaseClient.getInstance(context).itemDao().insert(item2)
+
+        // Generate the bill
+        val items = listOf(item1, item2)
+        val totalAmount = items.sumBy { it.price }
+        val bill = Bill(items = items, totalAmount = totalAmount)
+        DatabaseClient.getInstance(context).billDao().insert(bill)
+
+        // Notify the caller that a new bill has been generated
+        onBillGenerated(bill)
+    }) {
+        Text("Add Items and Generate Bill")
+    }
+}
+
 /*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
