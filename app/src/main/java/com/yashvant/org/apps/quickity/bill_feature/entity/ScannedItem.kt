@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
@@ -20,9 +21,14 @@ data class Item(
 
 @Entity(tableName = "bills")
 data class Bill(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val items: List<Item>,
-    val totalAmount: Int)
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+
+    val totalAmount: Int
+) {
+    @Embedded
+    val items: List<Item> = listOf()
+}
 
 @Database(entities = [Item::class, Bill::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
