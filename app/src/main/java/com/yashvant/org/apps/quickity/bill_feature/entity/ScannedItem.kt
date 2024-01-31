@@ -3,81 +3,11 @@ package com.yashvant.org.apps.quickity.bill_feature.entity
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Database
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.Insert
-import androidx.room.PrimaryKey
-import androidx.room.Query
-import androidx.room.Room
-import androidx.room.RoomDatabase
-
-@Entity(tableName = "items")
-data class Item(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val name: String,
-    val price: Int)
-
-@Entity(tableName = "bills")
-data class Bill(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-
-    val totalAmount: Int
-) {
-    @Embedded
-    val items: List<Item> = listOf()
-}
-
-@Database(entities = [Item::class, Bill::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun itemDao(): ItemDao
-    abstract fun billDao(): BillDao
-}
-
-@Dao
-interface ItemDao {
-    @Query("SELECT * FROM items")
-    fun getAllItems(): LiveData<List<Item>>
-
-    @Insert
-    fun insert(item: Item)
-}
-
-@Dao
-interface BillDao {
-    @Query("SELECT * FROM bills")
-    fun getAllBills(): LiveData<List<Bill>>
-
-    @Insert
-    fun insert(bill: Bill)
-}
-
-object DatabaseClient {
-    private val lock = Any()
-    private var db: AppDatabase? = null
-
-    fun getInstance(context: Context): AppDatabase {
-        synchronized(lock) {
-            if (db == null) {
-                db = Room.databaseBuilder(context.applicationContext,
-                    AppDatabase::class.java, "room_database")
-                    .build()
-            }
-            return db!!
-        }
-    }
-}
-
-/*
-import android.content.Context
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -85,41 +15,29 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-
-@Entity(tableName = "scanned_items")
-data class ScannedItem(
+@Entity(tableName = "bill_table")
+data class BillEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val itemName: String,
-    val itemDescription: String
+    val itemPrice: Double
 )
 
-@Dao
-interface ScannedItemDao {
+data class Item(val name: String, val price: Double)
 
-    @Query("SELECT * FROM scanned_items")
-    fun getAllItems(): Flow<List<ScannedItem>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItem(item: ScannedItem)
-
-    // Additional methods...
-
-}
-
-@Database(entities = [ScannedItem::class], version = 1)
+@Database(entities = [BillEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-
-    abstract fun scannedItemDao(): ScannedItemDao
+    abstract fun billDao(): BillDao
 
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getInstance(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -133,40 +51,39 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-class ScannedItemRepository(private val scannedItemDao: ScannedItemDao) {
+@Dao
+interface BillDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBill(billEntity: BillEntity)
 
-    val allItems: Flow<List<ScannedItem>> = scannedItemDao.getAllItems()
-
-    suspend fun insertItem(item: ScannedItem) {
-        scannedItemDao.insertItem(item)
-    }
-
-    // Additional methods...
-
-    suspend fun getAllItems(): Flow<List<ScannedItem>> {
-        return scannedItemDao.getAllItems()
-    }
-
-
+    @Query("SELECT * FROM bill_table")
+    suspend fun getAllBills(): List<BillEntity>
 }
 
-class ScannedItemViewModel(private val repository: ScannedItemRepository) : ViewModel() {
-
-    val allItems: Flow<List<ScannedItem>> = repository.allItems
-
-    fun insertItem(item: ScannedItem) {
-        viewModelScope.launch {
-            repository.insertItem(item)
-        }
+class BillRepository(private val billDao: BillDao) {
+    suspend fun insertBill(billEntity: BillEntity) {
+        billDao.insertBill(billEntity)
     }
 
-    fun getAllItems(): Flow<List<ScannedItem>> {
-        viewModelScope.launch {
-            repository.getAllItems()
-        }
+    suspend fun getAllBills(): List<BillEntity> {
+        return billDao.getAllBills()
     }
-
-    // Additional methods...
 }
 
-*/
+class BillViewModel(private val repository: BillRepository) : ViewModel() {
+    private val _bills = MutableStateFlow<List<BillEntity>>(emptyList())
+    val bills: StateFlow<List<BillEntity>> = _bills
+
+    fun addBill(item: Item) {
+        viewModelScope.launch {
+            val billEntity = BillEntity(itemName = item.name, itemPrice = item.price)
+            repository.insertBill(billEntity)
+            _bills.value = repository.getAllBills()
+        }
+    }
+}
+
+
+
+
+
