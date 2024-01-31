@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Entity
+import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Room
@@ -33,12 +34,18 @@ abstract class AppDatabase : RoomDatabase() {
 interface ItemDao {
     @Query("SELECT * FROM items")
     fun getAllItems(): LiveData<List<Item>>
+
+    @Insert
+    fun insert(item: Item)
 }
 
 @Dao
 interface BillDao {
     @Query("SELECT * FROM bills")
     fun getAllBills(): LiveData<List<Bill>>
+
+    @Insert
+    fun insert(bill: Bill)
 }
 
 object DatabaseClient {

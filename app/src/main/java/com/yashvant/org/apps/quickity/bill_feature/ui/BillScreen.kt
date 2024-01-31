@@ -1,30 +1,73 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import com.yashvant.org.apps.quickity.bill_feature.entity.Bill
 import com.yashvant.org.apps.quickity.bill_feature.entity.DatabaseClient
 import com.yashvant.org.apps.quickity.bill_feature.entity.Item
-import kotlinx.coroutines.flow.internal.NoOpContinuation.context
 
 @Composable
 fun BillScreen() {
-    FloatingActionButton(onClick = {
-        // Add items to the database
-        val item1 = Item(name = "Item 1", price = 10)
-        val item2 = Item(name = "Item 2", price = 20)
-        DatabaseClient.getInstance(context).itemDao().insert(item1)
-        DatabaseClient.getInstance(context).itemDao().insert(item2)
+    val context = LocalContext.current
+        Button(onClick = {
+            // Add items to the database
+            val item1 = Item(name = "Item 1", price = 10, id = 1)
+            val item2 = Item(name = "Item 2", price = 20, id = 2)
+            DatabaseClient.getInstance(context).itemDao().insert(item1)
+            DatabaseClient.getInstance(context).itemDao().insert(item2)
 
-        // Generate the bill
-        val items = listOf(item1, item2)
-        val totalAmount = items.sumBy { it.price }
-        val bill = Bill(items = items, totalAmount = totalAmount)
-        DatabaseClient.getInstance(context).billDao().insert(bill)
+            // Generate the bill
+            val items = listOf(item1, item2)
+            val totalAmount = items.sumBy { it.price }
+            val bill = Bill(items = items, totalAmount = totalAmount, id = 3)
+            DatabaseClient.getInstance(context).billDao().insert(bill)
 
-        // Notify the caller that a new bill has been generated
-        onBillGenerated(bill)
-    }) {
-        Text("Add Items and Generate Bill")
+        }) {
+            Text("Add Items and Generate Bill")
+        }
+
+    val bills = DatabaseClient.getInstance(context).billDao().getAllBills()
+
+    BillList(bills = bills.value!!)
+
+
+}
+
+@Composable
+fun BillList(bills: List<Bill>) {
+    LazyColumn {
+        items(bills.size) { bill ->
+            BillCard(bills[bill])
+        }
+    }
+}
+
+@Composable
+fun BillCard(bill: Bill) {
+    Card(modifier = Modifier.padding(8.dp)) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Bill Total: ${bill.totalAmount}", style = MaterialTheme.typography.bodyMedium)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text("Items:", style = MaterialTheme.typography.bodyMedium)
+
+            bill.items.forEach { item ->
+                Text(text = "${item.name} - ${item.price}")
+            }
+        }
     }
 }
 

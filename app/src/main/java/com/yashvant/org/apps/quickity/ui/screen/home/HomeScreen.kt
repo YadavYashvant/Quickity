@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.Post
+import com.yashvant.org.apps.quickity.bill_feature.ui.BillScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.redV
@@ -167,7 +168,7 @@ fun HomeScreen(navController: NavController) {
 
                 composable("Bills"){
                     //BillScreen(viewModel = viewModel)
-
+                    BillScreen()
                 }
             }
         }
