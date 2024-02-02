@@ -45,8 +45,10 @@ fun BillCard(bill: BillEntity) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        // Display bill details here
-        // You can use bill.itemName, bill.itemPrice, etc.
+        Column {
+            Text(text = bill.itemName)
+            Text(text = bill.itemPrice.toString())
+        }
     }
 }
 
