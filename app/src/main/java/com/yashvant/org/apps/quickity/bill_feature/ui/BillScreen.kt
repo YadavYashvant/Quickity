@@ -62,7 +62,7 @@ fun GenerateBillButton(viewModel: BillViewModel = viewModel()) {
             .padding(16.dp)
             .fillMaxWidth()
     ) {
-        Text("Generate Bill")
+        Text("Generate Bill") // To be replaced with a QR code scanner
     }
 }
 
