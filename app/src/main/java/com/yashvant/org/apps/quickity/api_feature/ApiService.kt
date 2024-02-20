@@ -5,6 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService{
-    @GET("/posts/{id}")
-    fun getPostsbyId(@Path("id") postId: Int): Call<Post>
+    /*@GET("/posts/{id}")
+    fun getPostsbyId(@Path("id") postId: Int): Call<Post>*/
+
+    @GET("/hello")
+    fun getHello(): Call<String>
 }

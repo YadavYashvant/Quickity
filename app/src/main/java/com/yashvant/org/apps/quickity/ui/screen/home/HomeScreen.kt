@@ -47,8 +47,8 @@ import retrofit2.Response
 @Composable
 fun HomeScreen(navController: NavController) {
         val navbarController = rememberNavController()
-        var responseforui by remember { mutableStateOf(Post(body = "", id = 0, title = "", userId = 25)) }
-
+        //var responseforui by remember { mutableStateOf(Post(body = "", id = 0, title = "", userId = 25)) }
+        var resui by remember { mutableStateOf("") }
         Scaffold(
             bottomBar = {
                 BottomNavigation(navController = navbarController)
@@ -74,20 +74,18 @@ fun HomeScreen(navController: NavController) {
                                 )
                                 Button(
                                     onClick = {
-                                        val postId = 1;
-                                        val call = ApiClient.apiService.getPostsbyId(postId)
 
-                                        call.enqueue(object : Callback<Post> {
+                                        val call = ApiClient.apiService.getHello()
+
+                                        call.enqueue(object : Callback<String> {
                                             override fun onResponse(
-                                                call: Call<Post>,
-                                                response: Response<Post>
+                                                call: Call<String>,
+                                                response: Response<String>
                                             ) {
                                                 if (response.isSuccessful) {
                                                     val post = response.body()
-                                                    responseforui = post!!
                                                     Log.d("api", "$post")
-
-
+                                                    resui = post.toString()
                                                     // Handle the retrieved post data
                                                 } else {
                                                     // Handle error
@@ -95,7 +93,7 @@ fun HomeScreen(navController: NavController) {
                                                 }
                                             }
 
-                                            override fun onFailure(call: Call<Post>, t: Throwable) {
+                                            override fun onFailure(call: Call<String>, t: Throwable) {
                                                 // Handle failure
                                                 Log.e("api", "$t")
                                             }
@@ -124,9 +122,9 @@ fun HomeScreen(navController: NavController) {
                                         .fillMaxWidth()
                                         .height(200.dp)
                                 ) {
-                                    Text(text = responseforui.title, modifier = Modifier.fillMaxWidth(), fontSize = 32.sp)
-                                    Text(text = responseforui.body, modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
-                                    Text(text = responseforui.userId.toString(), modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
+                                    Text(text = resui, modifier = Modifier.fillMaxWidth(), fontSize = 32.sp)
+                                    /*Text(text = responseforui.body, modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
+                                    Text(text = responseforui.userId.toString(), modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)*/
                                     /*Image(
                                         painter = painterResource(id = image),
                                          contentDescription = null,
