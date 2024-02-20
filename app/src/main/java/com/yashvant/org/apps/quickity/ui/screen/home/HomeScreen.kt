@@ -17,6 +17,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -43,6 +47,7 @@ import retrofit2.Response
 @Composable
 fun HomeScreen(navController: NavController) {
         val navbarController = rememberNavController()
+        var responseforui by remember { mutableStateOf(Post(body = "", id = 0, title = "", userId = 25)) }
 
         Scaffold(
             bottomBar = {
@@ -79,7 +84,10 @@ fun HomeScreen(navController: NavController) {
                                             ) {
                                                 if (response.isSuccessful) {
                                                     val post = response.body()
+                                                    responseforui = post!!
                                                     Log.d("api", "$post")
+
+
                                                     // Handle the retrieved post data
                                                 } else {
                                                     // Handle error
@@ -107,7 +115,7 @@ fun HomeScreen(navController: NavController) {
 
                             }
                         }
-                        items(10){
+                        items(4){
                             val image = pickrandomImage()
                                 Card(
                                     onClick = { /*TODO*/ },
@@ -116,13 +124,16 @@ fun HomeScreen(navController: NavController) {
                                         .fillMaxWidth()
                                         .height(200.dp)
                                 ) {
-                                    Image(
+                                    Text(text = responseforui.title, modifier = Modifier.fillMaxWidth(), fontSize = 32.sp)
+                                    Text(text = responseforui.body, modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
+                                    Text(text = responseforui.userId.toString(), modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
+                                    /*Image(
                                         painter = painterResource(id = image),
                                          contentDescription = null,
                                         modifier = Modifier
                                             .fillMaxSize(),
                                         contentScale = androidx.compose.ui.layout.ContentScale.FillBounds
-                                    )
+                                    )*/
                                 }
                             }
                         }
