@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/*
 @Entity(tableName = "bill_table")
 data class BillEntity(
     @PrimaryKey(autoGenerate = true)
@@ -82,6 +83,7 @@ class BillViewModel(private val repository: BillRepository) : ViewModel() {
         }
     }
 }
+*/
 
 
 

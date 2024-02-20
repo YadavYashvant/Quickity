@@ -1,6 +1,6 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
-import android.app.Application
+/*import android.app.Application
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -86,4 +86,4 @@ fun MyAppBill() {
     val app = remember { MyApp() }
 
     MyAppContent(app)
-}
+}*/
