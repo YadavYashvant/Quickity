@@ -52,12 +52,10 @@ import retrofit2.Response
 @Composable
 fun HomeScreen(navController: NavController) {
         val navbarController = rememberNavController()
-        //var responseforui by remember { mutableStateOf(Post(body = "", id = 0, title = "", userId = 25)) }
         var resui by remember { mutableStateOf("") }
-        // In your composable function
         val userDao = MyAppDatabase.getInstance(context = LocalContext.current).userDao()
 
-    // Display users
+
         Column {
             users.value.forEach { user ->
                 Text("Name: ${user.name}")
