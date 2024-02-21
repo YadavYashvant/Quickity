@@ -1,3 +1,4 @@
+
 package com.yashvant.org.apps.quickity.ui.screen.result
 
 import android.text.util.Linkify

@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,12 +36,16 @@ import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.Post
+import com.yashvant.org.apps.quickity.bill_feature.Dao.MyAppDatabase
+import com.yashvant.org.apps.quickity.bill_feature.model.User
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.redV
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -49,7 +54,18 @@ fun HomeScreen(navController: NavController) {
         val navbarController = rememberNavController()
         //var responseforui by remember { mutableStateOf(Post(body = "", id = 0, title = "", userId = 25)) }
         var resui by remember { mutableStateOf("") }
-        Scaffold(
+        // In your composable function
+        val userDao = MyAppDatabase.getInstance(context = LocalContext.current).userDao()
+
+    // Display users
+        Column {
+            users.value.forEach { user ->
+                Text("Name: ${user.name}")
+                Text("Email: ${user.email}")
+            }
+        }
+
+    Scaffold(
             bottomBar = {
                 BottomNavigation(navController = navbarController)
             }

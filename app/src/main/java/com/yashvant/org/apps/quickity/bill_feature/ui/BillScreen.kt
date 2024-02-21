@@ -1,5 +1,32 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
+import androidx.compose.runtime.Composable
+
+@Composable
+fun BillScreen(viewModel: UserViewModel) {
+    Column {
+        TextField(
+            value = viewModel.name.value,
+            onValueChange = viewModel::onNameChange,
+            placeholder = { Text("Enter name") }
+        )
+        TextField(
+            value = viewModel.email.value,
+            onValueChange = viewModel::onEmailChange,
+            placeholder = { Text("Enter email") }
+        )
+        Button(onClick = viewModel::onSaveClicked) {
+            Text("Save User")
+        }
+    }
+
+    Spacer(modifier = Modifier.weight(1f))
+
+    List(viewModel.users.value) { user ->
+        UserListItem(user)
+    }
+}
+
 /*import android.app.Application
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
