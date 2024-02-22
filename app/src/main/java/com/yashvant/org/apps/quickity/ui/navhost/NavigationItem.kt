@@ -5,7 +5,9 @@ enum class Screen {
     SCAN,
     GENERATE,
     RESULT,
-    IMAGE_PICKER
+    IMAGE_PICKER,
+    BOOKS,
+    UPDATE_BOOK
 }
 
 sealed class NavigationItem(val route: String) {
@@ -14,4 +16,6 @@ sealed class NavigationItem(val route: String) {
     object Generate : NavigationItem(Screen.GENERATE.name)
     object Result : NavigationItem(Screen.RESULT.name)
     object ImagePicker : NavigationItem(Screen.IMAGE_PICKER.name)
+    object Books : NavigationItem(Screen.BOOKS.name)
+    object UpdateBook : NavigationItem(Screen.UPDATE_BOOK.name)
 }

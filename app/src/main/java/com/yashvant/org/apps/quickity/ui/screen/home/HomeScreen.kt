@@ -36,8 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.Post
-import com.yashvant.org.apps.quickity.bill_feature.Dao.MyAppDatabase
-import com.yashvant.org.apps.quickity.bill_feature.model.User
+import com.yashvant.org.apps.quickity.bill_feature.ui.BooksScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.redV
@@ -52,11 +51,6 @@ import retrofit2.Response
 @Composable
 fun HomeScreen(navController: NavController) {
         val navbarController = rememberNavController()
-        var resui by remember { mutableStateOf("") }
-        val userDao = MyAppDatabase.getInstance(context = LocalContext.current).userDao()
-
-
-
     Scaffold(
             bottomBar = {
                 BottomNavigation(navController = navbarController)
@@ -93,7 +87,6 @@ fun HomeScreen(navController: NavController) {
                                                 if (response.isSuccessful) {
                                                     val post = response.body()
                                                     Log.d("api", "$post")
-                                                    resui = post.toString()
                                                     // Handle the retrieved post data
                                                 } else {
                                                     // Handle error
@@ -121,27 +114,7 @@ fun HomeScreen(navController: NavController) {
 
                             }
                         }
-                        items(4){
-                            val image = pickrandomImage()
-                                Card(
-                                    onClick = { /*TODO*/ },
-                                    modifier = Modifier
-                                        .padding(vertical = 8.dp)
-                                        .fillMaxWidth()
-                                        .height(200.dp)
-                                ) {
-                                    Text(text = resui, modifier = Modifier.fillMaxWidth(), fontSize = 32.sp)
-                                    /*Text(text = responseforui.body, modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)
-                                    Text(text = responseforui.userId.toString(), modifier = Modifier.fillMaxWidth(), fontSize = 16.sp)*/
-                                    /*Image(
-                                        painter = painterResource(id = image),
-                                         contentDescription = null,
-                                        modifier = Modifier
-                                            .fillMaxSize(),
-                                        contentScale = androidx.compose.ui.layout.ContentScale.FillBounds
-                                    )*/
-                                }
-                            }
+
                         }
                     }
 
@@ -184,7 +157,11 @@ fun HomeScreen(navController: NavController) {
 
                 composable("Bills"){
                     //BillScreen(viewModel = viewModel)
-                    Text(text = "Bill screen", modifier = Modifier.fillMaxWidth(), fontSize = 32.sp)
+                    BooksScreen(navigateToUpdateBookScreen = { bookId ->
+                        navController.navigate(
+                            route = "${NavigationItem.UpdateBook.route}/${bookId}"
+                        )
+                    })
                 }
             }
         }

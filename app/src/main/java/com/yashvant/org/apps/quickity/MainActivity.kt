@@ -21,8 +21,10 @@ import androidx.navigation.compose.rememberNavController
 //import com.yashvant.org.apps.quickity.bill_feature.entity.ScannedItemViewModel
 import com.yashvant.org.apps.quickity.ui.navhost.AppNavHost
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     //private val viewModel: ScannedItemViewModel by viewModels()
