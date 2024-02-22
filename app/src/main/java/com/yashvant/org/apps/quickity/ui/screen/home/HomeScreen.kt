@@ -55,13 +55,7 @@ fun HomeScreen(navController: NavController) {
         var resui by remember { mutableStateOf("") }
         val userDao = MyAppDatabase.getInstance(context = LocalContext.current).userDao()
 
-        val users = userDao.getAllUsers()
-        Column {
-            users.value.forEach { user ->
-                Text("Name: ${user.name}")
-                Text("Email: ${user.email}")
-            }
-        }
+
 
     Scaffold(
             bottomBar = {
