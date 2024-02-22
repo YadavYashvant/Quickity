@@ -2,7 +2,7 @@ package com.yashvant.org.apps.quickity.bill_feature.ui
 
 import androidx.compose.runtime.Composable
 
-@Composable
+/*@Composable
 fun BillScreen(viewModel: UserViewModel) {
     Column {
         TextField(
@@ -25,7 +25,7 @@ fun BillScreen(viewModel: UserViewModel) {
     List(viewModel.users.value) { user ->
         UserListItem(user)
     }
-}
+}*/
 
 /*import android.app.Application
 import androidx.compose.foundation.layout.Column

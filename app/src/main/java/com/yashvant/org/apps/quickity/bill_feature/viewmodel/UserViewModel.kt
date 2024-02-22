@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class UserViewModel : ViewModel() {
+/*class UserViewModel : ViewModel() {
     private val userDao = MyAppDatabase.getInstance().userDao()
 
     val name = MutableStateFlow("")
     val email = MutableStateFlow("")
-    val users = userDao.getAllUsers().asFlow().stateIn(viewModelScope)
+    //val users = userDao.getAllUsers().asFlow().stateIn(viewModelScope)
 
     fun onNameChange(newName: String) {
         name.value = newName
@@ -30,4 +30,4 @@ class UserViewModel : ViewModel() {
             userDao.insertUser(User(0, name.value, email.value))
         }
     }
-}
+}*/
