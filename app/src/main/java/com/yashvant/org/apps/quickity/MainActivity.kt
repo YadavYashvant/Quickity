@@ -26,30 +26,17 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    //private val viewModel: ScannedItemViewModel by viewModels()
-
-//    companion object {
-//        @SuppressLint("StaticFieldLeak")
-//        lateinit var beepManager: BeepManager
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        beepManager = BeepManager(this)
         setContent {
             RequestPermission()
 
             QRScannerTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-//                    ScanScreen()
                     AppNavHost(navController = rememberNavController(),/* viewModel = viewModel*/)
-                    // TabLayoutScreen()
                 }
             }
         }
@@ -72,12 +59,10 @@ fun RequestPermission() {
             LocalContext.current,
             android.Manifest.permission.CAMERA
         ) -> {
-            // Some works that require permission
             Log.d("TAG", "Code requires permission")
         }
 
         else -> {
-            // Asking for permission
             SideEffect {
                 launcher.launch(android.Manifest.permission.CAMERA)
             }

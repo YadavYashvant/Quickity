@@ -1,13 +1,14 @@
 package com.yashvant.org.apps.quickity.ui.navhost
 
+import com.yashvant.org.apps.quickity.utils.Constants.Companion.BOOKS_SCREEN
+import com.yashvant.org.apps.quickity.utils.Constants.Companion.UPDATE_BOOK_SCREEN
+
 enum class Screen {
     HOME,
     SCAN,
     GENERATE,
     RESULT,
     IMAGE_PICKER,
-    BOOKS,
-    UPDATE_BOOK
 }
 
 sealed class NavigationItem(val route: String) {
@@ -16,6 +17,6 @@ sealed class NavigationItem(val route: String) {
     object Generate : NavigationItem(Screen.GENERATE.name)
     object Result : NavigationItem(Screen.RESULT.name)
     object ImagePicker : NavigationItem(Screen.IMAGE_PICKER.name)
-    object Books : NavigationItem(Screen.BOOKS.name)
-    object UpdateBook : NavigationItem(Screen.UPDATE_BOOK.name)
+    object Books : NavigationItem(BOOKS_SCREEN)
+    object UpdateBook : NavigationItem(UPDATE_BOOK_SCREEN)
 }

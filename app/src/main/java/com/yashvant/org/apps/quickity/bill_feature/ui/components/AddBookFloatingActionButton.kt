@@ -15,8 +15,7 @@ fun AddBookFloatingActionButton(
     openDialog: () -> Unit
 ) {
     FloatingActionButton(
-        onClick = openDialog,
-        Modifier.background(MaterialTheme.colorScheme.primary)
+        onClick = openDialog
     ) {
         Icon(
             imageVector = Icons.Default.Add,
