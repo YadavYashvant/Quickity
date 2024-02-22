@@ -1,17 +1,20 @@
 package ro.alexmamo.roomjetpackcompose.presentation.books.components
 
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TextTitle(
-    bookTitle: String
+fun TextAuthor(
+    billPrice: String
 ) {
     Text(
-        text = bookTitle,
+        text = "by $billPrice",
         color = Color.DarkGray,
-        fontSize = 25.sp
+        fontSize = 12.sp,
+        textDecoration = TextDecoration.Underline
     )
 }

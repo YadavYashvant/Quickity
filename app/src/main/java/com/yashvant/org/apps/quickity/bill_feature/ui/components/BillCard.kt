@@ -8,14 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.yashvant.org.apps.quickity.bill_feature.model.Book
+import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookCard(
-    book: Book,
-    deleteBook: () -> Unit,
-    navigateToUpdateBookScreen: (bookId: Int) -> Unit
+fun BillCard(
+    bill: Bill,
+    deleteBill: () -> Unit,
+    navigateToUpdateBillScreen: (billId: Int) -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
@@ -28,7 +28,7 @@ fun BookCard(
             )
             .fillMaxWidth(),
         onClick = {
-            navigateToUpdateBookScreen(book.id)
+            navigateToUpdateBillScreen(bill.id)
         }
     ) {
         Row(
@@ -37,17 +37,17 @@ fun BookCard(
         ) {
             Column {
                 TextTitle(
-                    bookTitle = book.title
+                    billItem = bill.Item
                 )
                 TextAuthor(
-                    bookAuthor = book.author
+                    billPrice = bill.price
                 )
             }
             Spacer(
                 modifier = Modifier.weight(1f)
             )
             DeleteIcon(
-                deleteBook = deleteBook
+                deleteBill = deleteBill
             )
         }
     }

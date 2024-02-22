@@ -10,13 +10,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UpdateBookTopBar(
+fun UpdateBillTopBar(
     navigateBack: () -> Unit
 ) {
     TopAppBar (
         title = {
             Text(
-                text = "Update Book",
+                text = "Update Bill",
             )
         },
         navigationIcon = {

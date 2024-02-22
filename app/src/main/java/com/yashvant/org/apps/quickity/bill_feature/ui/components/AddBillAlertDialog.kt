@@ -1,6 +1,5 @@
 package ro.alexmamo.roomjetpackcompose.presentation.books.components
 
-import android.provider.MediaStore.MediaColumns.AUTHOR
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -13,35 +12,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.unit.dp
-import com.yashvant.org.apps.quickity.bill_feature.model.Book
+import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 import kotlinx.coroutines.job
 
 @Composable
-fun AddBookAlertDialog(
+fun AddBillAlertDialog(
     openDialog: Boolean,
     closeDialog: () -> Unit,
-    addBook: (book: Book) -> Unit
+    addBill: (bill: Bill) -> Unit
 ) {
     if (openDialog) {
-        var title by remember { mutableStateOf("") }
-        var author by remember { mutableStateOf("") }
+        var item by remember { mutableStateOf("") }
+        var price by remember { mutableStateOf("") }
         val focusRequester = FocusRequester()
 
         AlertDialog(
             onDismissRequest = closeDialog,
             title = {
                 Text(
-                    text = "Add a new book"
+                    text = "Add a new bill"
                 )
             },
             text = {
                 Column {
                     TextField(
-                        value = title,
-                        onValueChange = { title = it },
+                        value = item,
+                        onValueChange = { item = it },
                         placeholder = {
                             Text(
-                                text = "Title"
+                                text = "Item name"
                             )
                         },
                         modifier = Modifier.focusRequester(focusRequester)
@@ -55,11 +54,11 @@ fun AddBookAlertDialog(
                         modifier = Modifier.height(16.dp)
                     )
                     TextField(
-                        value = author,
-                        onValueChange = { author = it },
+                        value = price,
+                        onValueChange = { price = it },
                         placeholder = {
                             Text(
-                                text = AUTHOR
+                                text = "Price"
                             )
                         }
                     )
@@ -69,8 +68,8 @@ fun AddBookAlertDialog(
                 TextButton(
                     onClick = {
                         closeDialog()
-                        val book = Book(0, title, author)
-                        addBook(book)
+                        val bill = Bill(0, item, price)
+                        addBill(bill)
                     }
                 ) {
                     Text(

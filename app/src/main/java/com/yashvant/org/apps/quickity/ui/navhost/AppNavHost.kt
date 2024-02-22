@@ -7,14 +7,14 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.yashvant.org.apps.quickity.bill_feature.ui.BooksScreen
+import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.screen.imagepicker.ImagePicker
 import com.yashvant.org.apps.quickity.ui.screen.result.ResultScreen
 import com.yashvant.org.apps.quickity.ui.screen.generatecode.GenerateCodeScreen
 import com.yashvant.org.apps.quickity.ui.screen.home.HomeScreen
 import com.yashvant.org.apps.quickity.ui.screen.scan.ScanScreen
-import com.yashvant.org.apps.quickity.utils.Constants.Companion.BOOK_ID
-import ro.alexmamo.roomjetpackcompose.presentation.update_book.UpdateBookScreen
+import com.yashvant.org.apps.quickity.utils.Constants.Companion.BILL_ID
+import ro.alexmamo.roomjetpackcompose.presentation.update_book.UpdateBillScreen
 
 @Composable
 fun AppNavHost(
@@ -50,27 +50,27 @@ fun AppNavHost(
         }
 
         composable(
-            route = NavigationItem.Books.route
+            route = NavigationItem.Bills.route
         ) {
-            BooksScreen(
-                navigateToUpdateBookScreen = { bookId ->
+            BillsScreen(
+                navigateToUpdateBillScreen = { billId ->
                     navController.navigate(
-                        route = "${NavigationItem.UpdateBook.route}/${bookId}"
+                        route = "${NavigationItem.UpdateBill.route}/${billId}"
                     )
                 }
             )
         }
         composable(
-            route = "${NavigationItem.UpdateBook.route}/{$BOOK_ID}",
+            route = "${NavigationItem.UpdateBill.route}/{$BILL_ID}",
             arguments = listOf(
-                navArgument(BOOK_ID) {
+                navArgument(BILL_ID) {
                     type = NavType.IntType
                 }
             )
         ) { backStackEntry ->
-            val bookId = backStackEntry.arguments?.getInt(BOOK_ID) ?: 0
-            UpdateBookScreen(
-                bookId = bookId,
+            val billId = backStackEntry.arguments?.getInt(BILL_ID) ?: 0
+            UpdateBillScreen(
+                billId = billId,
                 navigateBack = {
                     navController.popBackStack()
                 }

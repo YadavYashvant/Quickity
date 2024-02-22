@@ -2,10 +2,10 @@ package com.yashvant.org.apps.quickity.di
 
 import android.content.Context
 import androidx.room.Room
-import com.yashvant.org.apps.quickity.bill_feature.Dao.BookDao
-import com.yashvant.org.apps.quickity.bill_feature.model.BookRepository
-import com.yashvant.org.apps.quickity.bill_feature.model.BookRepositoryImpl
-import com.yashvant.org.apps.quickity.bill_feature.network.BookDb
+import com.yashvant.org.apps.quickity.bill_feature.Dao.BillDao
+import com.yashvant.org.apps.quickity.bill_feature.model.BillRepository
+import com.yashvant.org.apps.quickity.bill_feature.model.BillRepositoryImpl
+import com.yashvant.org.apps.quickity.bill_feature.network.BillDb
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,19 +21,19 @@ class AppModule {
         context: Context
     ) = Room.databaseBuilder(
         context,
-        BookDb::class.java,
+        BillDb::class.java,
         "book_table"
     ).build()
 
     @Provides
     fun provideBookDao(
-        bookDb: BookDb
-    ) = bookDb.bookDao
+        billDb: BillDb
+    ) = billDb.billDao
 
     @Provides
     fun provideBookRepository(
-        bookDao: BookDao
-    ): BookRepository = BookRepositoryImpl(
-        bookDao = bookDao
+        billDao: BillDao
+    ): BillRepository = BillRepositoryImpl(
+        billDao = billDao
     )
 }

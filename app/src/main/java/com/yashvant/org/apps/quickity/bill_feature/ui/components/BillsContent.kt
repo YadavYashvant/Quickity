@@ -9,29 +9,29 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.yashvant.org.apps.quickity.bill_feature.model.Book
-import com.yashvant.org.apps.quickity.bill_feature.model.Books
+import com.yashvant.org.apps.quickity.bill_feature.model.Bill
+import com.yashvant.org.apps.quickity.bill_feature.model.Bills
 
 @Composable
 @ExperimentalMaterial3Api
-fun BooksContent(
+fun BillsContent(
     padding: PaddingValues,
-    books: Books,
-    deleteBook: (book: Book) -> Unit,
-    navigateToUpdateBookScreen: (bookId: Int) -> Unit
+    bills: Bills,
+    deleteBill: (bill: Bill) -> Unit,
+    navigateToUpdateBillScreen: (billId: Int) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp)
     ) {
         items(
-            items = books,
-        ) { book ->
-            BookCard(
-                book = book,
-                deleteBook = {
-                    deleteBook(book)
+            items = bills,
+        ) { bill ->
+            BillCard(
+                bill = bill,
+                deleteBill = {
+                    deleteBill(bill)
                 },
-                navigateToUpdateBookScreen = navigateToUpdateBookScreen
+                navigateToUpdateBillScreen = navigateToUpdateBillScreen
             )
         }
     }

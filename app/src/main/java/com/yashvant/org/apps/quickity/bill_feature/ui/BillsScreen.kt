@@ -9,47 +9,47 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBookAlertDialog
-import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBookFloatingActionButton
-import ro.alexmamo.roomjetpackcompose.presentation.books.components.BooksContent
-import ro.alexmamo.roomjetpackcompose.presentation.books.components.BooksTopBar
+import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillAlertDialog
+import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillFloatingActionButton
+import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsContent
+import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BooksScreen(
-    viewModel: BooksViewModel = hiltViewModel(),
-    navigateToUpdateBookScreen: (bookId: Int) -> Unit
+fun BillsScreen(
+    viewModel: BillsViewModel = hiltViewModel(),
+    navigateToUpdateBillScreen: (billId: Int) -> Unit
 ) {
-    val books by viewModel.books.collectAsState(
+    val bills by viewModel.bills.collectAsState(
         initial = emptyList()
     )
 
     Scaffold(
         topBar = {
-            BooksTopBar()
+            BillsTopBar()
         },
         modifier = Modifier.padding(bottom = 70.dp),
         content = { padding ->
-            BooksContent(
+            BillsContent(
                 padding = padding,
-                books = books,
-                deleteBook = { book ->
-                    viewModel.deleteBook(book)
+                bills = bills,
+                deleteBill = { bill ->
+                    viewModel.deleteBill(bill)
                 },
-                navigateToUpdateBookScreen = navigateToUpdateBookScreen
+                navigateToUpdateBillScreen = navigateToUpdateBillScreen
             )
-            AddBookAlertDialog(
+            AddBillAlertDialog(
                 openDialog = viewModel.openDialog,
                 closeDialog = {
                     viewModel.closeDialog()
                 },
-                addBook = { book->
-                    viewModel.addBook(book)
+                addBill = { bill->
+                    viewModel.addBill(bill)
                 }
             )
         },
         floatingActionButton = {
-            AddBookFloatingActionButton(
+            AddBillFloatingActionButton(
                 openDialog = {
                     viewModel.openDialog()
                 }

@@ -8,14 +8,14 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun DeleteIcon(
-    deleteBook: () -> Unit
+    deleteBill: () -> Unit
 ) {
     IconButton(
-        onClick = deleteBook
+        onClick = deleteBill
     ) {
         Icon(
             imageVector = Icons.Default.Delete,
-            contentDescription = "Delete book icon",
+            contentDescription = "Delete bill icon",
         )
     }
 }

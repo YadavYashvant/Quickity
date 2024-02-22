@@ -8,15 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.yashvant.org.apps.quickity.bill_feature.model.Book
+import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 
 @Composable
-fun UpdateBookContent(
+fun UpdateBillContent(
     padding: PaddingValues,
-    book: Book,
-    updateTitle: (title: String) -> Unit,
-    updateAuthor: (author: String) -> Unit,
-    updateBook: (book: Book) -> Unit,
+    bill: Bill,
+    updateItem: (item: String) -> Unit,
+    updatePrice: (price: String) -> Unit,
+    updateBill: (bill: Bill) -> Unit,
     navigateBack: () -> Unit
 ) {
     Column(
@@ -25,13 +25,13 @@ fun UpdateBookContent(
         verticalArrangement = Arrangement.Center
     ) {
         TextField(
-            value = book.title,
+            value = bill.Item,
             onValueChange = { title ->
-                updateTitle(title)
+                updateItem(title)
             },
             placeholder = {
                 Text(
-                    text = "Title"
+                    text = "Item name"
                 )
             }
         )
@@ -39,19 +39,19 @@ fun UpdateBookContent(
             modifier = Modifier.height(8.dp)
         )
         TextField(
-            value = book.author,
+            value = bill.price,
             onValueChange = { author ->
-                updateAuthor(author)
+                updatePrice(author)
             },
             placeholder = {
                 Text(
-                    text = "Author"
+                    text = "Price"
                 )
             }
         )
         Button(
             onClick = {
-                updateBook(book)
+                updateBill(bill)
                 navigateBack()
             }
         ) {
