@@ -1,0 +1,9 @@
+runtime: java
+env: standard
+
+runtime_config:
+  jdk: openjdk17
+
+handlers:
+- url: /.*
+  script: This s simple backend api
