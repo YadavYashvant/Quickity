@@ -144,7 +144,6 @@ fun HomeScreen(navController: NavController) {
                     }
                 }
 
-
                 composable("Bills"){
                     //BillScreen(viewModel = viewModel)
                     BillsScreen(navigateToUpdateBillScreen = { bookId ->
@@ -155,17 +154,4 @@ fun HomeScreen(navController: NavController) {
                 }
             }
         }
-}
-
-val imagelist = listOf(
-    R.drawable.lakeside_sunset,
-    R.drawable.lowpoly_street,
-    R.drawable.lucy_rebecca,
-    R.drawable.messi,
-    R.drawable.moments_before_desk,
-    R.drawable.night_city,
-)
-
-fun pickrandomImage(): Int {
-    return imagelist.random()
 }
