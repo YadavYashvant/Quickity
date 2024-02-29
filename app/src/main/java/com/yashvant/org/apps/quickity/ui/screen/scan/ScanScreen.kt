@@ -44,6 +44,8 @@ import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import java.text.SimpleDateFormat
+import java.util.TimeZone
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,10 +85,15 @@ fun ScanScreen(navController: NavController, viewModel: BillsViewModel = hiltVie
                         val encodedUrl =
                             URLEncoder.encode(resultText, StandardCharsets.UTF_8.toString())
                         try {
-                            navController.navigate("${NavigationItem.Result.route}/$encodedUrl")
                             val rand_price = (0..100).random()
+                            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+                            // Optionally, set the timezone if needed
+                            dateFormat.timeZone = TimeZone.getTimeZone("UTC")
                             val bill = Bill(0, encodedUrl, "Price: $rand_price Time: ${System.currentTimeMillis()}")
                             viewModel.addBill(bill)
+
+                            navController.navigate("${NavigationItem.Result.route}/$encodedUrl")
                             binding.barcodeView.pause()
                         } catch (e: Exception) {
                             Toast.makeText(context, "Invalid code", Toast.LENGTH_SHORT).show()
