@@ -84,7 +84,8 @@ fun ScanScreen(navController: NavController, viewModel: BillsViewModel = hiltVie
                             URLEncoder.encode(resultText, StandardCharsets.UTF_8.toString())
                         try {
                             navController.navigate("${NavigationItem.Result.route}/$encodedUrl")
-                            val bill = Bill(0, encodedUrl, "$0")
+                            val rand_price = (0..100).random()
+                            val bill = Bill(0, encodedUrl, "Price: $rand_price Time: ${System.currentTimeMillis()}")
                             viewModel.addBill(bill)
                             binding.barcodeView.pause()
                         } catch (e: Exception) {

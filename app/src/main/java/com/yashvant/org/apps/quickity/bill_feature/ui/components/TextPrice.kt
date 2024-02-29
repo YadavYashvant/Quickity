@@ -12,7 +12,7 @@ fun TextAuthor(
     billPrice: String
 ) {
     Text(
-        text = "by $billPrice",
+        text = "$billPrice",
         color = Color.DarkGray,
         fontSize = 12.sp,
         textDecoration = TextDecoration.Underline
