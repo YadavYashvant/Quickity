@@ -45,6 +45,7 @@ import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.TimeZone
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,10 +88,9 @@ fun ScanScreen(navController: NavController, viewModel: BillsViewModel = hiltVie
                         try {
                             val rand_price = (0..100).random()
                             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-
-                            // Optionally, set the timezone if needed
-                            dateFormat.timeZone = TimeZone.getTimeZone("UTC")
-                            val bill = Bill(0, encodedUrl, "Price: $rand_price Time: ${System.currentTimeMillis()}")
+                            val date = Date(System.currentTimeMillis())
+                            val formattedDate = dateFormat.format(date)
+                            val bill = Bill(0, encodedUrl, "Price: $rand_price Time: ${formattedDate}")
                             viewModel.addBill(bill)
 
                             navController.navigate("${NavigationItem.Result.route}/$encodedUrl")
