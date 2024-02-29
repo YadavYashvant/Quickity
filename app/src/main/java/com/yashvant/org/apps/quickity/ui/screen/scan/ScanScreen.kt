@@ -90,7 +90,7 @@ fun ScanScreen(navController: NavController, viewModel: BillsViewModel = hiltVie
                             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                             val date = Date(System.currentTimeMillis())
                             val formattedDate = dateFormat.format(date)
-                            val bill = Bill(0, encodedUrl, "Price: $rand_price Time: ${formattedDate}")
+                            val bill = Bill(0, encodedUrl, "Price: ₹$rand_price Time: ${formattedDate}")
                             viewModel.addBill(bill)
 
                             navController.navigate("${NavigationItem.Result.route}/$encodedUrl")

@@ -14,7 +14,7 @@ fun TextAuthor(
     Text(
         text = "$billPrice",
         color = Color.DarkGray,
-        fontSize = 12.sp,
-        textDecoration = TextDecoration.Underline
+        fontSize = 16.sp,
+
     )
 }
