@@ -26,6 +26,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.zxing.ResultPoint
@@ -35,6 +37,8 @@ import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.camera.CameraSettings
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.qrscanner.databinding.BarcodeLayoutBinding
+import com.yashvant.org.apps.quickity.bill_feature.model.Bill
+import com.yashvant.org.apps.quickity.bill_feature.ui.BillsViewModel
 import com.yashvant.org.apps.quickity.findActivity
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
@@ -43,7 +47,7 @@ import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScanScreen(navController: NavController) {
+fun ScanScreen(navController: NavController, viewModel: BillsViewModel = hiltViewModel()) {
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -80,6 +84,8 @@ fun ScanScreen(navController: NavController) {
                             URLEncoder.encode(resultText, StandardCharsets.UTF_8.toString())
                         try {
                             navController.navigate("${NavigationItem.Result.route}/$encodedUrl")
+                            val bill = Bill(0, encodedUrl, "$0")
+                            viewModel.addBill(bill)
                             binding.barcodeView.pause()
                         } catch (e: Exception) {
                             Toast.makeText(context, "Invalid code", Toast.LENGTH_SHORT).show()
