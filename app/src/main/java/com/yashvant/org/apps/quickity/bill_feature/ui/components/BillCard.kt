@@ -125,24 +125,25 @@ fun BillCard(
                         text = "Read More",
                         fontSize =  11.sp,
                         fontWeight = FontWeight.SemiBold,
-                        style = MaterialTheme.typography.titleLarge
+                        style = MaterialTheme.typography.titleLarge,
                     )
 
-                    Spacer(modifier = Modifier.width(4.dp))
 
-                    DeleteIcon(
-                        deleteBill = deleteBill
-                    )
                 }
+
+                DeleteIcon(
+                    deleteBill = deleteBill
+                )
             }
+
+
 
             Surface(
                 shape = RoundedCornerShape(16.dp),
-                modifier = Modifier.size(width = 100.dp, height = 140.dp)
+                modifier = Modifier.size(height = 200.dp, width = 100.dp),
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.quickity_navicon),
-                    contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
             }
