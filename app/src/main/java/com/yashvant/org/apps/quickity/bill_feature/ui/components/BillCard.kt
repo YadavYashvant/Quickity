@@ -21,9 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 
-@OptIn(ExperimentalMaterial3Api::class)
+/*@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BillCard(
     bill: Bill,
@@ -64,11 +65,14 @@ fun BillCard(
             )
         }
     }
-}
+}*/
 
-@Preview
 @Composable
-fun CardElevation() {
+fun BillCard(
+    bill: Bill,
+    deleteBill: () -> Unit,
+    navigateToUpdateBillScreen: (billId: Int) -> Unit
+) {
     Surface(
         shape = RoundedCornerShape(16.dp),
         color = Color(0xFFDAE1E7),
@@ -76,6 +80,10 @@ fun CardElevation() {
             .height(210.dp)
             .padding(10.dp),
         shadowElevation = 10.dp
+        ,
+        onClick = {
+            navigateToUpdateBillScreen(bill.id)
+        }
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -93,7 +101,7 @@ fun CardElevation() {
                     color = Color(0xFFD1D5E1)
                 ) {
                     Text(
-                        text = "New release",
+                        text = "Bill",
                         fontSize =  12.sp,
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
@@ -103,7 +111,7 @@ fun CardElevation() {
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Gift Plant",
+                    text = bill.Item,
                     fontSize =  24.sp,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold
@@ -111,7 +119,7 @@ fun CardElevation() {
 
                 Spacer(modifier = Modifier.height(2.dp))
 
-                Text(text = "Price : 300$")
+                Text(text = "Price : ₹${bill.price}")
 
                 Spacer(modifier = Modifier.height(2.dp))
 
@@ -124,24 +132,24 @@ fun CardElevation() {
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Icon(
-                        painter = painterResource(id = R),
+                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
                         tint = Color(0xFFF6B266),
                         contentDescription = null
                     )
 
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_star_outline_24),
+                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
                         tint = Color(0xFFF6B266),
                         contentDescription = null
                     )
 
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_star_outline_24),
+                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
                         tint = Color(0xFFF6B266),
                         contentDescription = null
                     )
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_star_outline_24),
+                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
                         tint = Color(0xFFF6B266),
                         contentDescription = null
                     )
@@ -162,6 +170,12 @@ fun CardElevation() {
                         fontSize =  11.sp,
                         fontWeight = FontWeight.SemiBold,
                         style = MaterialTheme.typography.titleLarge
+                    )
+
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    DeleteIcon(
+                        deleteBill = deleteBill
                     )
                 }
             }
