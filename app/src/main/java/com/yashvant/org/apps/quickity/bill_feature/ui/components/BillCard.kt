@@ -23,50 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
-
-/*@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BillCard(
-    bill: Bill,
-    deleteBill: () -> Unit,
-    navigateToUpdateBillScreen: (billId: Int) -> Unit
-) {
-    Card(
-        shape = MaterialTheme.shapes.small,
-        modifier = Modifier
-            .padding(
-                start = 8.dp,
-                end = 8.dp,
-                top = 4.dp,
-                bottom = 4.dp
-            )
-            .fillMaxWidth(),
-        onClick = {
-            navigateToUpdateBillScreen(bill.id)
-        }
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Column {
-                TextItem(
-                    billItem = bill.Item
-                )
-                TextPrice(
-                    billPrice = bill.price
-                )
-            }
-            Spacer(
-                modifier = Modifier.weight(1f)
-            )
-            DeleteIcon(
-                deleteBill = deleteBill
-            )
-        }
-    }
-}*/
-
 @Composable
 fun BillCard(
     bill: Bill,
@@ -77,7 +33,7 @@ fun BillCard(
         shape = RoundedCornerShape(16.dp),
         color = Color(0xFFDAE1E7),
         modifier = Modifier
-            .height(210.dp)
+            .wrapContentHeight()
             .padding(10.dp),
         shadowElevation = 10.dp
         ,
