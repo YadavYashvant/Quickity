@@ -36,10 +36,10 @@ fun BillCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column {
-                TextTitle(
+                TextItem(
                     billItem = bill.Item
                 )
-                TextAuthor(
+                TextPrice(
                     billPrice = bill.price
                 )
             }
