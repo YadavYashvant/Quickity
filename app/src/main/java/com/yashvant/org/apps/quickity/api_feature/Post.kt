@@ -1,8 +1,8 @@
 package com.yashvant.org.apps.quickity.api_feature
 
-data class Post(
-    val body: String,
-    val id: Int,
-    val title: String,
+data class User(
+    val name: String,
+    val password: Int,
+    val hasForgotPassword: Boolean,
     val userId: Int
 )
