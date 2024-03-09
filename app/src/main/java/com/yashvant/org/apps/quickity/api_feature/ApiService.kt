@@ -8,4 +8,7 @@ interface ApiService{
 
     @GET("/hello")
     fun getHello(): Call<String>
+
+    @GET("/todos")
+    fun getUser(): Call<User>
 }
