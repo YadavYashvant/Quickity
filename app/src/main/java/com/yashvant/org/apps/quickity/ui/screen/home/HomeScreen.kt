@@ -28,6 +28,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
+import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
@@ -68,9 +69,9 @@ fun HomeScreen(navController: NavController) {
                             Button(
                                 onClick = {
 
-                                    val call = ApiClient.apiService.getHello()
-
-                                    call.enqueue(object : Callback<String> {
+//                                    val call = ApiClient.apiService.getHello()
+                                    val user_call = ApiClient.apiService.getUser()
+                                    user_call.enqueue(object : Callback<User> {
                                         override fun onResponse(
                                             call: Call<String>,
                                             response: Response<String>
