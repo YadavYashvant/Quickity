@@ -5,10 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService{
-
-    @GET("/hello")
-    fun getHello(): Call<String>
-
     @GET("/todos")
     fun getUser(): Call<User>
 }

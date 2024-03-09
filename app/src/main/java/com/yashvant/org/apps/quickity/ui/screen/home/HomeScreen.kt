@@ -90,25 +90,6 @@ fun HomeScreen(navController: NavController) {
                                             // Handle failure
                                             Log.e("api", "$t")
                                         }
-
-                                        /*override fun onResponse(
-                                            call: Call<String>,
-                                            response: Response<String>
-                                        ) {
-                                            if (response.isSuccessful) {
-                                                val post = response.body()
-                                                Log.d("api", "$post")
-                                                // Handle the retrieved post data
-                                            } else {
-                                                // Handle error
-                                                Log.e("api", "Error getting post")
-                                            }
-                                        }
-
-                                        override fun onFailure(call: Call<String>, t: Throwable) {
-                                            // Handle failure
-                                            Log.e("api", "$t")
-                                        }*/
                                     })
                                 },
                                 modifier = Modifier
@@ -166,7 +147,6 @@ fun HomeScreen(navController: NavController) {
             }
 
             composable("Bills"){
-                //BillScreen(viewModel = viewModel)
                 BillsScreen(navigateToUpdateBillScreen = { bookId ->
                     navController.navigate(
                         route = "${NavigationItem.UpdateBill.route}/${bookId}"
