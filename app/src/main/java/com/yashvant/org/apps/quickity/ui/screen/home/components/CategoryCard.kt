@@ -31,7 +31,6 @@ fun CategoryCard() {
         modifier = Modifier
             .width(250.dp)
             .height(350.dp)
-//            .padding(horizontal = 16.dp)
         ,
         shape = RoundedCornerShape(20.dp),
         onClick = {}
