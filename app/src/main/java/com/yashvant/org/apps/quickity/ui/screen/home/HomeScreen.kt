@@ -43,7 +43,7 @@ fun HomeScreen(){
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+//                    .padding(horizontal = 16.dp)
             ) {
                 /*Text(
                     "Quickity", fontSize = 24.sp, fontWeight = FontWeight.Bold,
@@ -59,7 +59,7 @@ fun HomeScreen(){
                         .align(Alignment.Start)
                 )
                 Text(
-                    user, fontSize = 48.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = barlowfont,
+                    user, fontSize = 48.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = klandstinfont,
                     modifier = Modifier
                         .align(Alignment.Start)
                 )
