@@ -2,9 +2,18 @@ package com.yashvant.org.apps.quickity.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.yashvant.org.apps.qrscanner.R
+
+val klandstinfont = FontFamily(
+    Font(R.font.klandstin)
+)
+val barlowfont = FontFamily(
+    Font(R.font.barlow)
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
