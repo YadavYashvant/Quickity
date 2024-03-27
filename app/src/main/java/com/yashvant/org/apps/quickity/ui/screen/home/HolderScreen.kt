@@ -65,7 +65,7 @@ fun HolderScreen(navController: NavController) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(20.dp),
                 ) {
                     Column(
                         modifier = Modifier

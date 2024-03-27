@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
+import com.yashvant.org.apps.quickity.ui.theme.blackV
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,12 +38,12 @@ fun CategoryCard() {
     ) {
         Box {
             Image(
-                painter = painterResource(id = R.drawable.grocery), contentDescription = "grocery",
+                painter = painterResource(id = R.drawable.grocery1), contentDescription = "grocery",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
 
-            Text(text = "GROCERY", fontFamily = barlowfont, fontSize = 36.sp, color = Color.White, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
+            Text(text = "GROCERY", fontFamily = barlowfont, fontSize = 48.sp, color = blackV, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
                 Alignment.Center))
         }
     }
