@@ -9,15 +9,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -55,36 +62,51 @@ fun HolderScreen(navController: NavController) {
 
 
             composable("Scan") {
-                Column(
+                Card(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = 16.dp, bottom = 56.dp),
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 ) {
-                    Button(
-                        onClick = {
-                            navController.navigate(NavigationItem.Scan.route)
-                        },
+                    Column(
                         modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(vertical = 16.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = redV
-                        )
+                            .wrapContentSize()
+                            .padding(top = 16.dp, bottom = 56.dp),
                     ) {
-                        Text(stringResource(R.string.scan_code))
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = {
-                        navController.navigate(NavigationItem.Generate.route)
-                    },
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(vertical = 16.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = redV
+                        Button(
+                            onClick = {
+                                navController.navigate(NavigationItem.Scan.route)
+                            },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(vertical = 16.dp)
+                                .height(100.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = redV
+                            )
+                        ) {
+                            Text(stringResource(R.string.scan_code))
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Divider(
+                            color = redV, thickness = 8.dp, modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 48.dp)
+                                .clip(RoundedCornerShape(20.dp))
                         )
-                    ) {
-                        Text(stringResource(R.string.generate_qr_code))
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(
+                            onClick = {
+                                navController.navigate(NavigationItem.Generate.route)
+                            },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(vertical = 16.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = redV
+                            )
+                        ) {
+                            Text(stringResource(R.string.generate_qr_code))
+                        }
                     }
                 }
             }

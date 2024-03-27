@@ -36,7 +36,6 @@ fun CategoryCard() {
         onClick = {}
     ) {
         Box {
-
             Image(
                 painter = painterResource(id = R.drawable.grocery), contentDescription = "grocery",
                 contentScale = ContentScale.Crop,
