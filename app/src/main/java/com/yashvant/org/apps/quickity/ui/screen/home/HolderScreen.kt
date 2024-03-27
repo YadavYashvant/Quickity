@@ -39,6 +39,7 @@ import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
+import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.redV
 import retrofit2.Call
 import retrofit2.Callback
@@ -84,7 +85,7 @@ fun HolderScreen(navController: NavController) {
                                 containerColor = redV
                             )
                         ) {
-                            Text(stringResource(R.string.scan_code))
+                            Text(stringResource(R.string.scan_code), fontFamily = barlowext, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Divider(
@@ -100,7 +101,8 @@ fun HolderScreen(navController: NavController) {
                             },
                             modifier = Modifier
                                 .align(Alignment.CenterHorizontally)
-                                .padding(vertical = 16.dp),
+                                .fillMaxWidth()
+                                .padding(vertical = 16.dp, horizontal = 32.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = redV
                             )
