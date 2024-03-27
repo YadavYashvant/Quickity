@@ -22,8 +22,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.qrscanner.R
+import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
 import com.yashvant.org.apps.quickity.ui.theme.blackV
+import com.yashvant.org.apps.quickity.ui.theme.blueV
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +45,7 @@ fun CategoryCard() {
                 modifier = Modifier.fillMaxSize()
             )
 
-            Text(text = "GROCERY", fontFamily = barlowfont, fontSize = 48.sp, color = blackV, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
+            Text(text = "GROCERY", fontFamily = barlowext, fontSize = 48.sp, color = blueV, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
                 Alignment.Center))
         }
     }
