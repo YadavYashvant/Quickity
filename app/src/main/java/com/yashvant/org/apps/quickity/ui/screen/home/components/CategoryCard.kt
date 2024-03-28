@@ -32,8 +32,8 @@ import com.yashvant.org.apps.quickity.ui.theme.blueV
 fun CategoryCard() {
     Card(
         modifier = Modifier
-            .width(250.dp)
-            .height(350.dp)
+            .width(200.dp)
+            .height(300.dp)
         ,
         shape = RoundedCornerShape(20.dp),
         onClick = {}
@@ -45,7 +45,7 @@ fun CategoryCard() {
                 modifier = Modifier.fillMaxSize()
             )
 
-            Text(text = "GROCERY", fontFamily = barlowext, fontSize = 48.sp, color = blueV, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
+            Text(text = "GROCERY", fontFamily = barlowext, fontSize = 36.sp, color = blueV, fontWeight = FontWeight.ExtraBold, modifier = Modifier.align(
                 Alignment.Center))
         }
     }
