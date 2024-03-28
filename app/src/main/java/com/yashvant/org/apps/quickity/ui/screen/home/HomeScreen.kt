@@ -1,8 +1,12 @@
 package com.yashvant.org.apps.quickity.ui.screen.home
 
 import android.util.Log
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -41,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.ui.screen.home.components.CategoryCard
+import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
 import com.yashvant.org.apps.quickity.ui.theme.klandstinfont
 import com.yashvant.org.apps.quickity.ui.theme.redV
@@ -160,6 +165,10 @@ fun CupertinoAccordionItem(
     val backgroundColor = if (expanded) Color(0xFFF0F0F0) else Color.Transparent
     val borderColor = if (expanded) Color(0xFFD1D1D1) else Color(0xFFCCCCCC)
     val elevation = if (expanded) 2.dp else 0.dp
+    val contentHeight by animateDpAsState(
+        targetValue = if (expanded) 100.dp else 0.dp,
+        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing), label = ""
+    )
 
     Column(
         modifier = Modifier
@@ -176,7 +185,8 @@ fun CupertinoAccordionItem(
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
+                fontFamily = barlowfont
             )
             Spacer(modifier = Modifier.weight(1f))
             Icon(
@@ -185,7 +195,11 @@ fun CupertinoAccordionItem(
                 tint = MaterialTheme.colorScheme.onSurface
             )
         }
-        if (expanded) {
+        Box(
+            Modifier
+                .height(contentHeight)
+                .padding(vertical = 8.dp)
+        ) {
             content()
         }
         Divider(color = borderColor, thickness = 1.dp)
@@ -220,13 +234,13 @@ fun CupertinoAccordionDemo() {
         )
         CupertinoAccordionItem(
             title = "Section 4",
-            expanded = expandedIndex == 2,
+            expanded = expandedIndex == 3,
             onToggle = { expandedIndex = if (expandedIndex == 3) -1 else 3 },
             content = { Text("Content of section 3") }
         )
         CupertinoAccordionItem(
             title = "Section 5",
-            expanded = expandedIndex == 2,
+            expanded = expandedIndex == 4,
             onToggle = { expandedIndex = if (expandedIndex == 4) -1 else 4 },
             content = { Text("Content of section 3") }
         )
