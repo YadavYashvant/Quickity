@@ -43,8 +43,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -59,13 +62,22 @@ import com.yashvant.org.apps.quickity.ui.theme.redV
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.random.Random
 
 @Composable
 fun HomeScreen(){
 
     val user = "Yashvant"
     var scrollstate = rememberScrollState()
-    val gradientColors = listOf(Color(0xFF4CAF50), Color(0xFF2196F3)) // Define gradient colors
+    val scrollState = rememberScrollState()
+    val gradientColors = listOf(
+        Color(0xFF4CAF50),
+        Color(0xFF2196F3),
+        Color(0xFF9C27B0),
+        Color(0xFFFF5722),
+        Color(0xFFFFC107),
+        Color(0xFF009688)
+    ) // Define gradient colors
     val animatedProgress = remember { Animatable(0f) }
 
     LaunchedEffect(Unit) {
@@ -80,17 +92,24 @@ fun HomeScreen(){
 
     val backgroundBrush = Brush.linearGradient(
         colors = gradientColors,
-        /*startX = 0f,
+        start = Offset(x = 0f, 0f),
+        end = Offset(x = animatedProgress.value, y = 0f)
+    )
+
+    /*val backgroundBrush = Brush.linearGradient(
+        colors = gradientColors,
+        *//*startX = 0f,
         startY = 0f,
         endX = animatedProgress.value,
-        endY = 0f*/
-    )
+        endY = 0f*//*
+    )*/
 
     Column(
         modifier = Modifier
             .padding(vertical = 8.dp, horizontal = 16.dp)
             .padding(bottom = 75.dp)
             .verticalScroll(scrollstate)
+//            .background(brush = backgroundBrush)
             .fillMaxSize()
         ) {
             Column(
@@ -274,4 +293,58 @@ fun CupertinoAccordionDemo() {
         )
     }
    }
+}
+
+@Composable
+fun GradientWithDots() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.Black)
+            .drawWithContent {
+                drawContent()
+                drawGradientWithDots(size = size, drawScope = this)
+            }
+    )
+}
+
+
+fun drawGradientWithDots(size: androidx.compose.ui.geometry.Size, drawScope: DrawScope) {
+    val numDots = 100
+    val dotSize = 10f
+    val random = Random(42)
+
+    val colors = listOf(
+        Color(0xFF4CAF50),
+        Color(0xFF2196F3),
+        Color(0xFF9C27B0),
+        Color(0xFFFF5722),
+        Color(0xFFFFC107),
+        Color(0xFF009688)
+    )
+
+    val brush = Brush.linearGradient(
+        colors = colors,
+        start = Offset(0f, 0f),
+        end = Offset(size.width, size.height)
+    )
+
+    repeat(numDots) {
+        val x = random.nextFloat() * size.width
+        val y = random.nextFloat() * size.height
+        val color = colors[random.nextInt(colors.size)]
+        drawScope.drawCircle(color, radius = dotSize, center = Offset(x, y))
+    }
+
+    val linearGradient = Brush.verticalGradient(
+        colors = listOf(Color.Black, Color.Transparent),
+        startY = 0f,
+        endY = size.height
+    )
+
+    drawScope.drawCircle(
+        brush = linearGradient,
+        radius = size.height * 0.7f,
+        center = Offset(size.width * 0.5f, size.height * 0.5f)
+    )
 }
