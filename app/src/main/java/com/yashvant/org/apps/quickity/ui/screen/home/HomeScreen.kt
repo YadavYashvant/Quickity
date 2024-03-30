@@ -174,6 +174,7 @@ fun HomeScreen(){
                     ),
                     onClick = {
                         sendNotification(mContext, "YOUR BILL IS READY !!", "Hey Yashvant, your shopping bill has arrived, now pay the bill kindly for further procedure :>)")
+                        Log.d("notification", "Notification sent")
                     }
                 ) {
                     Row(
