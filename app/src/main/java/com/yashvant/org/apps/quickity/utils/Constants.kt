@@ -8,6 +8,7 @@ class Constants {
 
         //Arguments
         const val BILL_ID = "billId"
+        const val CHANNEL_ID = "channelId"
 
     }
 }
