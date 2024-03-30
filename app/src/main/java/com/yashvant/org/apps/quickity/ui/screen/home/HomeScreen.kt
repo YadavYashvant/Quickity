@@ -9,6 +9,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
@@ -48,12 +51,15 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.User
+import com.yashvant.org.apps.quickity.notification_feature.sendNotification
 import com.yashvant.org.apps.quickity.ui.screen.home.components.CategoryCard
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
@@ -79,6 +85,8 @@ fun HomeScreen(){
         Color(0xFF009688)
     ) // Define gradient colors
     val animatedProgress = remember { Animatable(0f) }
+
+    val mContext = LocalContext.current
 
     LaunchedEffect(Unit) {
         animatedProgress.animateTo(
@@ -132,7 +140,7 @@ fun HomeScreen(){
                         .align(Alignment.Start)
                 )
                 Text(
-                    user, fontSize = 36.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = klandstinfont,
+                    user, fontSize = 48.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = barlowext,
                     modifier = Modifier
                         .align(Alignment.Start)
                 )
@@ -157,6 +165,26 @@ fun HomeScreen(){
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = redV
+                    ),
+                    onClick = {
+                        sendNotification(mContext, "YOUR BILL IS READY !!", "Hey Yashvant, your shopping bill has arrived, now pay the bill kindly for further procedure :>)")
+                    }
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
+                        Text(text = "Notify Me", modifier = Modifier.padding(start = 8.dp), fontFamily = barlowfont, fontWeight = FontWeight.Bold)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
 
                 CupertinoAccordionDemo()
 
