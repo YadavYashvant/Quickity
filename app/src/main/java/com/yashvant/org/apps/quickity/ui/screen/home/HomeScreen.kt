@@ -83,7 +83,7 @@ fun HomeScreen(){
         Color(0xFFFF5722),
         Color(0xFFFFC107),
         Color(0xFF009688)
-    ) // Define gradient colors
+    )
     val animatedProgress = remember { Animatable(0f) }
 
     val mContext = LocalContext.current
@@ -123,17 +123,7 @@ fun HomeScreen(){
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-
-//                    .padding(horizontal = 16.dp)
             ) {
-                /*Text(
-                    "Quickity", fontSize = 24.sp, fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                )
-
-                Spacer(modifier = Modifier.height(32.dp))
-*/
                 Text(
                     "Hi There, ", fontSize = 48.sp, fontWeight = FontWeight.Bold, fontFamily = barlowfont,
                     modifier = Modifier
