@@ -60,7 +60,6 @@ import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.notification_feature.sendNotification
-import com.yashvant.org.apps.quickity.ui.dialogs.StandardDialog
 import com.yashvant.org.apps.quickity.ui.screen.home.components.CategoryCard
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
@@ -164,7 +163,7 @@ fun HomeScreen(){
                         containerColor = redV
                     ),
                     onClick = {
-                        StandardDialog(mContext)
+//                        StandardDialog(mContext)
                         sendNotification(mContext, "YOUR BILL IS READY !!", "Hey Yashvant, your shopping bill has arrived, now pay the bill kindly for further procedure :>)")
                         Log.d("notification", "Notification sent")
                     }

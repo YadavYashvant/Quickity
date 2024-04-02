@@ -1,5 +1,6 @@
 package com.yashvant.org.apps.quickity.ui.dialogs
 
+/*
 import android.app.Dialog
 import android.content.Context
 import com.saadahmedev.popupdialog.PopupDialog
@@ -28,4 +29,4 @@ fun StandardDialog(context: Context) {
             }
         })
         .show()
-}
+}*/
