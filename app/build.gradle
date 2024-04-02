@@ -91,5 +91,5 @@ dependencies {
     implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
 
     // popup dialog library
-    implementation 'com.saadahmedev.popup-dialog:popup-dialog:2.0.0'
+//    implementation 'com.saadahmedev.popup-dialog:popup-dialog:2.0.0'
 }
