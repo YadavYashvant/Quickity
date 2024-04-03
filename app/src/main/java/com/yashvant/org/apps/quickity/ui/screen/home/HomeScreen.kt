@@ -283,7 +283,7 @@ fun CupertinoAccordionDemo() {
    ) {
     Column {
         CupertinoAccordionItem(
-            title = "Section 1",
+            title = "Section 1 ",
             expanded = expandedIndex == 0,
             onToggle = { expandedIndex = if (expandedIndex == 0) -1 else 0 },
             content = { Text("Content of section 3") }
