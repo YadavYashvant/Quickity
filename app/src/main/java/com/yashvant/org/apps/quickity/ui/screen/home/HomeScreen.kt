@@ -115,7 +115,6 @@ fun HomeScreen(){
     Column(
         modifier = Modifier
             .padding(vertical = 8.dp, horizontal = 16.dp)
-            .padding(bottom = 75.dp)
             .verticalScroll(scrollstate)
 //            .background(brush = backgroundBrush)
             .fillMaxSize()
@@ -180,6 +179,8 @@ fun HomeScreen(){
                 Spacer(modifier = Modifier.height(8.dp))
 
                 CupertinoAccordionDemo()
+
+                Spacer(modifier = Modifier.height(60.dp))
 
                 /*Button(
                     onClick = {

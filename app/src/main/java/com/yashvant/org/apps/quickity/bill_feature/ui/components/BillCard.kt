@@ -24,20 +24,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BillCard(
     bill: Bill,
     deleteBill: () -> Unit,
     navigateToUpdateBillScreen: (billId: Int) -> Unit
 ) {
-    Surface(
+    Card(
         shape = RoundedCornerShape(16.dp),
-        color = Color(0xFFDAE1E7),
         modifier = Modifier
             .wrapContentHeight()
             .padding(10.dp),
-        shadowElevation = 10.dp
-        ,
+//        shadowElevation = 6.dp
+
         onClick = {
             navigateToUpdateBillScreen(bill.id)
         }
