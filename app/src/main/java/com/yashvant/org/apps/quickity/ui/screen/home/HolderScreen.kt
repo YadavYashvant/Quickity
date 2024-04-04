@@ -34,6 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
+import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderJet
 import com.yashvant.org.apps.quickity.api_feature.ApiClient
 import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
@@ -63,52 +64,67 @@ fun HolderScreen(navController: NavController) {
 
 
             composable("Scan") {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(20.dp),
-                ) {
-                    Column(
+                Column {
+                    Card(
                         modifier = Modifier
-                            .wrapContentSize()
-                            .padding(top = 16.dp, bottom = 56.dp),
+                            .fillMaxWidth()
+                            .padding(20.dp),
                     ) {
-                        Button(
-                            onClick = {
-                                navController.navigate(NavigationItem.Scan.route)
-                            },
+                        Column(
                             modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .padding(vertical = 16.dp)
-                                .height(100.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = redV
-                            )
+                                .wrapContentSize()
+                                .padding(top = 16.dp, bottom = 56.dp),
                         ) {
-                            Text(stringResource(R.string.scan_code), fontFamily = barlowext, fontSize = 24.sp, fontWeight = FontWeight.ExtraBold)
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Divider(
-                            color = redV, thickness = 8.dp, modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 48.dp)
-                                .clip(RoundedCornerShape(20.dp))
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Button(
-                            onClick = {
-                                navController.navigate(NavigationItem.Generate.route)
-                            },
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .fillMaxWidth()
-                                .padding(vertical = 16.dp, horizontal = 32.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = redV
+                            Button(
+                                onClick = {
+                                    navController.navigate(NavigationItem.Scan.route)
+                                },
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .padding(vertical = 16.dp)
+                                    .height(100.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = redV
+                                )
+                            ) {
+                                Text(
+                                    stringResource(R.string.scan_code),
+                                    fontFamily = barlowext,
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Divider(
+                                color = redV, thickness = 8.dp, modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 48.dp)
+                                    .clip(RoundedCornerShape(20.dp))
                             )
-                        ) {
-                            Text(stringResource(R.string.generate_qr_code))
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Button(
+                                onClick = {
+                                    navController.navigate(NavigationItem.Generate.route)
+                                },
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally)
+                                    .fillMaxWidth()
+                                    .padding(vertical = 16.dp, horizontal = 32.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = redV
+                                )
+                            ) {
+                                Text(stringResource(R.string.generate_qr_code))
+                            }
                         }
+                    }
+
+                    Divider(modifier = Modifier.padding(horizontal = 16.dp))
+
+                    Card(
+                        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                    ) {
+                        AnimatedPreloaderJet(modifier = Modifier.height(400.dp))
                     }
                 }
             }
