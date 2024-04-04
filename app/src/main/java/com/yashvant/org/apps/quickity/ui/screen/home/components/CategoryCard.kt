@@ -47,7 +47,7 @@ fun CategoryCard() {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
 //                    .fillMaxSize()
-                    .height(220.dp)
+                    .height(210.dp)
                     .clip(shape = RoundedCornerShape(20.dp))
             )
 
