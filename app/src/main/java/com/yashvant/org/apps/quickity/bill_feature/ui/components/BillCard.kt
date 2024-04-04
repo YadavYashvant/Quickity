@@ -55,7 +55,7 @@ fun BillCard(
                 Surface(
                     shape = RoundedCornerShape(24.dp),
                     modifier = Modifier.wrapContentSize(),
-                    color = Color(0xFFD1D5E1)
+                    color = MaterialTheme.colorScheme.onPrimary
                 ) {
                     Text(
                         text = "Bill",
