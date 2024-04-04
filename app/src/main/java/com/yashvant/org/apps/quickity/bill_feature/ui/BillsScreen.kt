@@ -48,12 +48,12 @@ fun BillsScreen(
                 }
             )
         },
-        floatingActionButton = {
+        /*floatingActionButton = {
             AddBillFloatingActionButton(
                 openDialog = {
                     viewModel.openDialog()
                 }
             )
-        }
+        }*/
     )
 }

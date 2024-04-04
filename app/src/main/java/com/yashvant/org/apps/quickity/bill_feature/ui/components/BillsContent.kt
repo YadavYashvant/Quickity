@@ -21,7 +21,7 @@ fun BillsContent(
     navigateToUpdateBillScreen: (billId: Int) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(padding).padding(horizontal = 16.dp)
+        modifier = Modifier.fillMaxSize().padding(padding).padding()
     ) {
         items(
             items = bills,
