@@ -47,6 +47,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -63,6 +64,7 @@ import com.yashvant.org.apps.quickity.notification_feature.sendNotification
 import com.yashvant.org.apps.quickity.ui.screen.home.components.CategoryCard
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.barlowfont
+import com.yashvant.org.apps.quickity.ui.theme.greenColor
 import com.yashvant.org.apps.quickity.ui.theme.klandstinfont
 import com.yashvant.org.apps.quickity.ui.theme.redV
 import retrofit2.Call
@@ -157,9 +159,9 @@ fun HomeScreen(){
 
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(10.dp),
+                    shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = redV
+                        containerColor = greenColor
                     ),
                     onClick = {
 //                        StandardDialog(mContext)
@@ -171,12 +173,12 @@ fun HomeScreen(){
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
                     ) {
-                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
-                        Text(text = "Notify Me", modifier = Modifier.padding(start = 8.dp), fontFamily = barlowfont, fontWeight = FontWeight.Bold)
+                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify", Modifier.scale(1.5f))
+                        Text(text = "Notify Me", fontSize = 20.sp, modifier = Modifier.padding(start = 16.dp), fontFamily = barlowfont, fontWeight = FontWeight.Bold)
                     }
                 }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 CupertinoAccordionDemo()
 

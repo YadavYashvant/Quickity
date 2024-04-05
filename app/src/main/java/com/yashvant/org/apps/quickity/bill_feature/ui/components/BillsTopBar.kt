@@ -13,7 +13,7 @@ fun BillsTopBar() {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = "Bills", fontSize = 28.sp,
+                text = "Billing", fontSize = 28.sp,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                 fontFamily = barlowext
             )

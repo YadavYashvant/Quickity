@@ -21,6 +21,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.yashvant.org.apps.quickity.MainActivity
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.greenColor
+import com.yashvant.org.apps.quickity.ui.theme.whiteV
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillAlertDialog
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsContent
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
@@ -77,7 +78,7 @@ fun BillsScreen(
                     .padding(16.dp)
                 ,
                 containerColor = greenColor,
-
+                contentColor = whiteV
 
             )
         }

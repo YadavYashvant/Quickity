@@ -74,22 +74,6 @@ fun BillsContent(
                 navigateToUpdateBillScreen = navigateToUpdateBillScreen
             )
         }
-        item {
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = {
-                payWithUpi()
-            },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                ,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = greenColor
-                )
-            ) {
-                Text(text = "Pay", modifier = Modifier.padding(vertical = 8.dp), fontSize = 20.sp, fontFamily = barlowext )
-            }
-        }
     }
 }
 
