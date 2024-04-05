@@ -3,6 +3,7 @@ package com.yashvant.org.apps.quickity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -22,10 +23,12 @@ import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.quickity.ui.navhost.AppNavHost
 import com.yashvant.org.apps.quickity.ui.theme.QRScannerTheme
 import dagger.hilt.android.AndroidEntryPoint
+import dev.shreyaspatil.easyupipayment.listener.PaymentStatusListener
+import dev.shreyaspatil.easyupipayment.model.TransactionDetails
 
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), PaymentStatusListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,10 +39,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AppNavHost(navController = rememberNavController(),/* viewModel = viewModel*/)
+                    AppNavHost(navController = rememberNavController(), mainActivity = this/* viewModel = viewModel*/)
                 }
             }
         }
+    }
+
+    override fun onTransactionCancelled() {
+        Toast.makeText(this, "Transaction cancelled by user..", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onTransactionCompleted(transactionDetails: TransactionDetails) {
+        Toast.makeText(this, "Transaction completed by user..", Toast.LENGTH_SHORT).show()
     }
 }
 

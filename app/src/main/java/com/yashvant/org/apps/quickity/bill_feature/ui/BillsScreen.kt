@@ -9,8 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.yashvant.org.apps.quickity.MainActivity
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillAlertDialog
-import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillFloatingActionButton
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsContent
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
 
@@ -18,7 +18,8 @@ import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
 @Composable
 fun BillsScreen(
     viewModel: BillsViewModel = hiltViewModel(),
-    navigateToUpdateBillScreen: (billId: Int) -> Unit
+    navigateToUpdateBillScreen: (billId: Int) -> Unit,
+    mainActivity: MainActivity
 ) {
     val bills by viewModel.bills.collectAsState(
         initial = emptyList()
@@ -36,6 +37,7 @@ fun BillsScreen(
                 deleteBill = { bill ->
                     viewModel.deleteBill(bill)
                 },
+                mainActivity = mainActivity,
                 navigateToUpdateBillScreen = navigateToUpdateBillScreen
             )
             AddBillAlertDialog(

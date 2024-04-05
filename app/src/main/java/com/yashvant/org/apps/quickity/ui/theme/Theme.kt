@@ -43,6 +43,11 @@ val blackV = Color(0XFF0F1923)
 val redV = Color(0xFFF54452)
 val blueV = Color(0XFF1F2731)
 val whiteV = Color(0XFFFFFFFF)
+val Purple200 = Color(0xFF0F9D58)
+val Purple500 = Color(0xFF0F9D58)
+val Purple700 = Color(0xFF3700B3)
+val Teal200 = Color(0xFF03DAC5)
+val greenColor = Color(0xFF0F9D58)
 @Composable
 fun QRScannerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

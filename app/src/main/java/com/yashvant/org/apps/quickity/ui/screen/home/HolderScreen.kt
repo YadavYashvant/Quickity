@@ -2,17 +2,12 @@
 package com.yashvant.org.apps.quickity.ui.screen.home
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -35,16 +30,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderJet
-import com.yashvant.org.apps.quickity.api_feature.ApiClient
-import com.yashvant.org.apps.quickity.api_feature.User
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.redV
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -134,7 +124,7 @@ fun HolderScreen(navController: NavController) {
                     navController.navigate(
                         route = "${NavigationItem.UpdateBill.route}/${bookId}"
                     )
-                })
+                }, mainActivity = mainActivity)
             }
         }
     }

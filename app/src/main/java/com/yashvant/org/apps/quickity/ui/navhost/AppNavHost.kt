@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.yashvant.org.apps.quickity.MainActivity
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.screen.imagepicker.ImagePicker
 import com.yashvant.org.apps.quickity.ui.screen.result.ResultScreen
@@ -21,6 +22,7 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     startDestination: String = NavigationItem.Home.route,
+    mainActivity: MainActivity
     //viewModel: ScannedItemViewModel,
 ) {
     NavHost(
@@ -57,7 +59,8 @@ fun AppNavHost(
                     navController.navigate(
                         route = "${NavigationItem.UpdateBill.route}/${billId}"
                     )
-                }
+                },
+                mainActivity = mainActivity
             )
         }
         composable(
