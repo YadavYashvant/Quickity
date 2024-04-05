@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -36,6 +37,7 @@ import androidx.navigation.NavHostController
 import com.yashvant.org.apps.quickity.MainActivity
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 import com.yashvant.org.apps.quickity.bill_feature.model.Bills
+import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.greenColor
 import dev.shreyaspatil.easyupipayment.EasyUpiPayment
 import dev.shreyaspatil.easyupipayment.listener.PaymentStatusListener
@@ -73,10 +75,19 @@ fun BillsContent(
             )
         }
         item {
+            Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
                 payWithUpi()
-            }) {
-                Text(text = "Pay")
+            },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                ,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = greenColor
+                )
+            ) {
+                Text(text = "Pay", modifier = Modifier.padding(vertical = 8.dp), fontSize = 20.sp, fontFamily = barlowext )
             }
         }
     }
@@ -112,7 +123,7 @@ fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostControlle
     ) {
 
         Text(
-            text = "UPI Payments in Android",
+            text = "Pay with UPI",
             color = greenColor,
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Bold, textAlign = TextAlign.Center
