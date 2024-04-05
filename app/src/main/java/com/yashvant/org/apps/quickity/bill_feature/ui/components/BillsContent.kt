@@ -52,7 +52,8 @@ fun BillsContent(
     bills: Bills,
     deleteBill: (bill: Bill) -> Unit,
     navigateToUpdateBillScreen: (billId: Int) -> Unit,
-    mainActivity: MainActivity
+    mainActivity: MainActivity,
+    payWithUpi: () -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -72,7 +73,9 @@ fun BillsContent(
             )
         }
         item {
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {
+                payWithUpi()
+            }) {
                 Text(text = "Pay")
             }
         }

@@ -38,6 +38,7 @@ fun BillsScreen(
                 deleteBill = { bill ->
                     viewModel.deleteBill(bill)
                 },
+                payWithUpi = payWithUpi,
                 mainActivity = mainActivity,
                 navigateToUpdateBillScreen = navigateToUpdateBillScreen
             )
