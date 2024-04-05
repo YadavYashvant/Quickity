@@ -29,6 +29,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yashvant.org.apps.qrscanner.R
+import com.yashvant.org.apps.quickity.MainActivity
 import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderJet
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
@@ -40,7 +41,7 @@ import com.yashvant.org.apps.quickity.ui.theme.redV
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HolderScreen(navController: NavController) {
+fun HolderScreen(navController: NavController, mainActivity: MainActivity) {
     val navbarController = rememberNavController()
     Scaffold(
         bottomBar = {
@@ -124,7 +125,9 @@ fun HolderScreen(navController: NavController) {
                     navController.navigate(
                         route = "${NavigationItem.UpdateBill.route}/${bookId}"
                     )
-                }, mainActivity = mainActivity)
+                }, mainActivity = mainActivity) {
+                    navController.navigate(com.yashvant.org.apps.quickity.ui.navhost.NavigationItem.PayWithUPI.route)
+                }
             }
         }
     }

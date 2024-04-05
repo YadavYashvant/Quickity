@@ -15,6 +15,7 @@ import com.yashvant.org.apps.quickity.ui.screen.generatecode.GenerateCodeScreen
 import com.yashvant.org.apps.quickity.ui.screen.home.HolderScreen
 import com.yashvant.org.apps.quickity.ui.screen.scan.ScanScreen
 import com.yashvant.org.apps.quickity.utils.Constants.Companion.BILL_ID
+import ro.alexmamo.roomjetpackcompose.presentation.books.components.UPIPaymentScreen
 import ro.alexmamo.roomjetpackcompose.presentation.update_book.UpdateBillScreen
 
 @Composable
@@ -31,7 +32,7 @@ fun AppNavHost(
         startDestination = startDestination
     ) {
         composable(NavigationItem.Home.route) {
-            HolderScreen(navController = navController, /*viewModel = viewModel*/)
+            HolderScreen(navController = navController,mainActivity = mainActivity /*viewModel = viewModel*/)
         }
         composable(
             "${NavigationItem.Result.route}/{result}",
@@ -50,6 +51,9 @@ fun AppNavHost(
         composable(NavigationItem.Scan.route) {
             ScanScreen(navController)
         }
+        composable(NavigationItem.PayWithUPI.route) {
+            UPIPaymentScreen(mainActivity = mainActivity, navController = navController)
+        }
 
         composable(
             route = NavigationItem.Bills.route
@@ -60,7 +64,10 @@ fun AppNavHost(
                         route = "${NavigationItem.UpdateBill.route}/${billId}"
                     )
                 },
-                mainActivity = mainActivity
+                mainActivity = mainActivity,
+                payWithUpi = {
+                    navController.navigate(NavigationItem.PayWithUPI.route)
+                }
             )
         }
         composable(

@@ -19,7 +19,8 @@ import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
 fun BillsScreen(
     viewModel: BillsViewModel = hiltViewModel(),
     navigateToUpdateBillScreen: (billId: Int) -> Unit,
-    mainActivity: MainActivity
+    mainActivity: MainActivity,
+    payWithUpi: () -> Unit
 ) {
     val bills by viewModel.bills.collectAsState(
         initial = emptyList()

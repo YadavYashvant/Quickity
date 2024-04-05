@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.yashvant.org.apps.quickity.MainActivity
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 import com.yashvant.org.apps.quickity.bill_feature.model.Bills
@@ -80,7 +81,7 @@ fun BillsContent(
 
 
 @Composable
-fun upiPayments(mainActivity: MainActivity) {
+fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostController) {
     val ctx = LocalContext.current
     val activity = (LocalContext.current as? Activity)
 
