@@ -14,16 +14,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
@@ -35,10 +39,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.yashvant.org.apps.quickity.MainActivity
+import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderTransfer
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
 import com.yashvant.org.apps.quickity.bill_feature.model.Bills
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
+import com.yashvant.org.apps.quickity.ui.theme.blueV
 import com.yashvant.org.apps.quickity.ui.theme.greenColor
+import com.yashvant.org.apps.quickity.ui.theme.redV
+import com.yashvant.org.apps.quickity.ui.theme.whiteV
 import dev.shreyaspatil.easyupipayment.EasyUpiPayment
 import dev.shreyaspatil.easyupipayment.listener.PaymentStatusListener
 import dev.shreyaspatil.easyupipayment.model.PaymentApp
@@ -78,10 +86,12 @@ fun BillsContent(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostController) {
     val ctx = LocalContext.current
     val activity = (LocalContext.current as? Activity)
+    val textRcolors = listOf<Color>(greenColor, redV, blueV)
 
     val amount = remember {
         mutableStateOf(TextFieldValue())
@@ -96,6 +106,11 @@ fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostControlle
         mutableStateOf(TextFieldValue())
     }
 
+    val brush = remember {
+        Brush.linearGradient(
+            colors = textRcolors
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -106,70 +121,109 @@ fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostControlle
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(
-            text = "Pay with UPI",
-            color = greenColor,
-            fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Bold, textAlign = TextAlign.Center
+        AnimatedPreloaderTransfer(
+            modifier = Modifier.height(50.dp)
         )
 
-        Spacer(modifier = Modifier.height(5.dp))
+        OutlinedCard(
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
 
-        TextField(
-            value = amount.value,
-            onValueChange = { amount.value = it },
-            placeholder = { Text(text = "Enter amount to be paid") },
+            Text(
+                text = "Pay with UPI",
+                color = greenColor,
+                fontFamily = barlowext,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
+                style = TextStyle(brush = brush),
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .align(Alignment.CenterHorizontally),
+            )
 
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+            Spacer(modifier = Modifier.height(5.dp))
 
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
-            singleLine = true,
+            TextField(
+                value = amount.value,
+                onValueChange = { amount.value = it },
+                placeholder = { Text(text = "Enter amount to be paid") },
+
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+
+                textStyle = TextStyle(brush = brush, fontSize = 15.sp),
+                singleLine = true,
+                shape = RoundedCornerShape(20.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
 
             )
-        Spacer(modifier = Modifier.height(5.dp))
-        TextField(
-            value = upiId.value,
-            onValueChange = { upiId.value = it },
-            placeholder = { Text(text = "Enter UPI Id") },
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
-            singleLine = true,
-        )
+            Spacer(modifier = Modifier.height(5.dp))
+            TextField(
+                value = upiId.value,
+                onValueChange = { upiId.value = it },
+                placeholder = { Text(text = "Enter UPI Id") },
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
 
-        Spacer(modifier = Modifier.height(5.dp))
+                textStyle = TextStyle(brush = brush, fontSize = 15.sp),
+                singleLine = true,
+                shape = RoundedCornerShape(20.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
+            )
 
-        TextField(
-            value = name.value,
-            onValueChange = { name.value = it },
-            placeholder = { Text(text = "Enter name") },
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
-            singleLine = true,
-        )
+            Spacer(modifier = Modifier.height(5.dp))
 
-        Spacer(modifier = Modifier.height(5.dp))
+            TextField(
+                value = name.value,
+                onValueChange = { name.value = it },
+                placeholder = { Text(text = "Enter name") },
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                textStyle = TextStyle(brush = brush, fontSize = 15.sp),
+                singleLine = true,
+                shape = RoundedCornerShape(20.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
+            )
 
-        TextField(
-            value = description.value,
-            onValueChange = { description.value = it },
+            Spacer(modifier = Modifier.height(5.dp))
 
-            placeholder = { Text(text = "Enter Description") },
+            TextField(
+                value = description.value,
+                onValueChange = { description.value = it },
 
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+                placeholder = { Text(text = "Enter Description") },
 
-            singleLine = true,
-        )
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                textStyle = TextStyle(brush = brush, fontSize = 15.sp),
+                singleLine = true,
+                shape = RoundedCornerShape(20.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
+            )
 
-        Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(10.dp))
+
+        }
 
         Button(
             onClick = {
@@ -190,7 +244,10 @@ fun UPIPaymentScreen(mainActivity: MainActivity, navController: NavHostControlle
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = greenColor
+            )
         ) {
             Text(text = "Make Payment", modifier = Modifier.padding(8.dp))
         }
