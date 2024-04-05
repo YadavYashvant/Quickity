@@ -1,15 +1,26 @@
 package com.yashvant.org.apps.quickity.bill_feature.ui
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.yashvant.org.apps.quickity.MainActivity
+import com.yashvant.org.apps.quickity.ui.theme.barlowext
+import com.yashvant.org.apps.quickity.ui.theme.greenColor
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.AddBillAlertDialog
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsContent
 import ro.alexmamo.roomjetpackcompose.presentation.books.components.BillsTopBar
@@ -52,12 +63,23 @@ fun BillsScreen(
                 }
             )
         },
-        /*floatingActionButton = {
-            AddBillFloatingActionButton(
-                openDialog = {
-                    viewModel.openDialog()
-                }
+        floatingActionButton = {
+            ExtendedFloatingActionButton(onClick = {
+                payWithUpi()
+            },
+                icon = {
+                    Icon(Icons.Outlined.ShoppingCart, contentDescription = "Pay")
+                },
+                text = {
+                    Text(text = "Pay", fontSize = 20.sp, fontFamily = barlowext)
+                },
+                modifier = Modifier
+                    .padding(16.dp)
+                ,
+                containerColor = greenColor,
+
+
             )
-        }*/
+        }
     )
 }
