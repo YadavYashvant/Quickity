@@ -3,6 +3,8 @@ package ro.alexmamo.roomjetpackcompose.presentation.books.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yashvant.org.apps.qrscanner.R
 import com.yashvant.org.apps.quickity.bill_feature.model.Bill
+import com.yashvant.org.apps.quickity.ui.theme.greenColor
+import com.yashvant.org.apps.quickity.ui.theme.redV
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BillCard(
@@ -74,11 +79,11 @@ fun BillCard(
                     fontWeight = FontWeight.SemiBold
                 )
 
-                Spacer(modifier = Modifier.height(2.dp))
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Text(text = bill.price.toString(), fontSize =  16.sp, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, fontStyle = FontStyle.Italic)
 
-                Spacer(modifier = Modifier.height(2.dp))
+                Spacer(modifier = Modifier.height(6.dp))
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -89,30 +94,31 @@ fun BillCard(
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
-                        tint = Color(0xFFF6B266),
+                        painter = painterResource(id = R.drawable.baseline_brightness_low_24),
+                        tint = greenColor,
                         contentDescription = null
                     )
 
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
-                        tint = Color(0xFFF6B266),
+                        painter = painterResource(id = R.drawable.baseline_brightness_low_24),
+//                        tint = Color(0xFFF6B266),
+                        tint = greenColor,
                         contentDescription = null
                     )
 
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
-                        tint = Color(0xFFF6B266),
+                        painter = painterResource(id = R.drawable.baseline_brightness_low_24),
+                        tint = greenColor,
                         contentDescription = null
                     )
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_menu_book_24),
-                        tint = Color(0xFFF6B266),
+                        painter = painterResource(id = R.drawable.baseline_brightness_low_24),
+                        tint = greenColor,
                         contentDescription = null
                     )
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(6.dp))
 
                 OutlinedButton(
                     shape = RoundedCornerShape(8.dp),
@@ -131,10 +137,10 @@ fun BillCard(
 
 
                 }
-
+/*
                 DeleteIcon(
                     deleteBill = deleteBill
-                )
+                )*/
             }
 
 
@@ -142,10 +148,12 @@ fun BillCard(
             Surface(
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.size(height = 200.dp, width = 100.dp),
+                color = MaterialTheme.colorScheme.onPrimary,
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.quickity_navicon),
-                    contentDescription = null
+                    imageVector = Icons.Default.ShoppingCart,
+                    contentDescription = null,
+                    colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(redV)
                 )
             }
         }
