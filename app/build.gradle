@@ -93,4 +93,7 @@ dependencies {
     implementation "com.airbnb.android:lottie-compose:6.0.0"
     // popup dialog library
 //    implementation 'com.saadahmedev.popup-dialog:popup-dialog:2.0.0'
+
+    // Easy UPI Payment Library
+    implementation 'dev.shreyaspatil.EasyUpiPayment:EasyUpiPayment:3.0.3'
 }
