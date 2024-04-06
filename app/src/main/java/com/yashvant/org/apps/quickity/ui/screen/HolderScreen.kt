@@ -1,5 +1,5 @@
 
-package com.yashvant.org.apps.quickity.ui.screen.home
+package com.yashvant.org.apps.quickity.ui.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -34,6 +34,7 @@ import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderJet
 import com.yashvant.org.apps.quickity.bill_feature.ui.BillsScreen
 import com.yashvant.org.apps.quickity.ui.navbars.BottomNavigation
 import com.yashvant.org.apps.quickity.ui.navhost.NavigationItem
+import com.yashvant.org.apps.quickity.ui.screen.home.HomeScreen
 import com.yashvant.org.apps.quickity.ui.theme.barlowext
 import com.yashvant.org.apps.quickity.ui.theme.redV
 
