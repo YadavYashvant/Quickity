@@ -81,10 +81,12 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.filled.Email
@@ -116,6 +118,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.yashvant.org.apps.quickity.animation.AnimatedPreloaderGradient
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -174,7 +177,7 @@ fun HomeScreen(){
                             fontFamily = klandstinfont,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.ExtraBold,
-                            color = MaterialTheme.colorScheme.onPrimary
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -184,13 +187,13 @@ fun HomeScreen(){
                             Icon(
                                 imageVector = Icons.Default.Menu,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimary
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(
+                    /*colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = greenColor
-                    )
+                    )*/
 
                 )
             },
@@ -246,16 +249,27 @@ fun HomeScreen(){
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        Text(
-                            "Hi There, ", fontSize = 48.sp, fontWeight = FontWeight.Bold, fontFamily = barlowfont,
-                            modifier = Modifier
-                                .align(Alignment.Start)
-                        )
-                        Text(
-                            user, fontSize = 48.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = barlowext,
-                            modifier = Modifier
-                                .align(Alignment.Start)
-                        )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                        ) {
+                            Column(
+                                modifier = Modifier.wrapContentSize()
+                            ) {
+                                Text(
+                                    "Hi There, ", fontSize = 48.sp, fontWeight = FontWeight.Bold, fontFamily = barlowfont,
+                                    modifier = Modifier
+                                        .align(Alignment.Start)
+                                )
+                                Text(
+                                    user, fontSize = 48.sp, fontWeight = FontWeight.Bold, color = redV, fontFamily = barlowext,
+                                    modifier = Modifier
+                                        .align(Alignment.Start)
+                                )
+                            }
+
+                            AnimatedPreloaderGradient(modifier = Modifier.height(145.dp))
+                        }
 
                         Spacer(modifier = Modifier.height(36.dp))
 
