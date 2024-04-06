@@ -105,6 +105,9 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -124,22 +127,13 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview
-fun NavigationDrawer(
-){
-
-}
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
 fun HomeScreen(){
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
 
-    val items = listOf(Icons.Default.Favorite, Icons.Default.Face, Icons.Default.Email, Icons.Default.Home, Icons.Filled.Settings, Icons.Filled.Search)
-    val items_name = listOf("Favorite", "Face", "Email", "Home", "Settings", "Search")
+    val items = listOf( Icons.Default.Home, Icons.Filled.Settings, Icons.Filled.Search, Icons.Default.Favorite, Icons.Default.Face, Icons.Default.Email,)
+    val items_name = listOf("Home", "Settings", "Search","Favorite", "Profile", "Contact", )
     val selectedItem = remember{
         mutableStateOf(items[0])
     }
@@ -151,6 +145,7 @@ fun HomeScreen(){
     ModalNavigationDrawer(
         drawerState = drawerState,
         modifier = Modifier.background(MaterialTheme.colorScheme.onPrimary),
+
         drawerContent = {
             DismissibleDrawerSheet{
                 Spacer(Modifier.height(12.dp))
@@ -163,7 +158,8 @@ fun HomeScreen(){
                             scope.launch { drawerState.close() }
                             selectedItem.value = item
                         },
-                        modifier = Modifier.padding(horizontal = 12.dp)
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                        shape = RoundedCornerShape(20.dp)
                     )
                 }
             }
@@ -251,7 +247,9 @@ fun HomeScreen(){
                     ) {
 
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(top = 32.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 32.dp),
                         ) {
                             Column(
                                 modifier = Modifier.wrapContentSize()
