@@ -15,7 +15,7 @@ import com.yashvant.org.apps.qrscanner.R
 fun AnimatedPreloaderGradient(modifier: Modifier = Modifier) {
     val preloaderLottieComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(
-            R.raw.gradient
+            R.raw.gradientexplore
         )
     )
 
