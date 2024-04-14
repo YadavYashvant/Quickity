@@ -32,9 +32,6 @@ import dev.shreyaspatil.easyupipayment.model.TransactionDetails
 class MainActivity : ComponentActivity(), PaymentStatusListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        WindowCompat.setDecorFitsSystemWindows(window,false)
-
         setContent {
             RequestPermission()
 

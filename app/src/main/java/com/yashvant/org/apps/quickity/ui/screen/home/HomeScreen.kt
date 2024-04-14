@@ -187,10 +187,6 @@ fun HomeScreen(){
                             )
                         }
                     },
-                    /*colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = greenColor
-                    )*/
-
                 )
             },
             content = {
@@ -225,20 +221,11 @@ fun HomeScreen(){
                     end = Offset(x = animatedProgress.value, y = 0f)
                 )
 
-                /*val backgroundBrush = Brush.linearGradient(
-                    colors = gradientColors,
-                    *//*startX = 0f,
-        startY = 0f,
-        endX = animatedProgress.value,
-        endY = 0f*//*
-    )*/
-
                 Column(
                     modifier = Modifier
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                         .padding(top = 56.dp)
                         .verticalScroll(scrollstate)
-//            .background(brush = backgroundBrush)
                         .fillMaxSize()
                 ) {
                     Column(
