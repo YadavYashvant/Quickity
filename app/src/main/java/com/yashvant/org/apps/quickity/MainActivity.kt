@@ -74,7 +74,7 @@ fun RequestPermission() {
             LocalContext.current,
             android.Manifest.permission.CAMERA
         ) -> {
-            Log.d("TAG", "Code requires permission")
+            Log.d("TAG", "Program requires permissions")
         }
 
         else -> {
